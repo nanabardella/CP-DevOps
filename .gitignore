@@ -1,0 +1,17 @@
+**/bin/
+**/obj/
+.vs/
+.vscode/*
+!.vscode/extensions.json
+*.user
+*.suo
+.env
+.env.*
+**/appsettings.Local.json
+**/appsettings.*.local.json
+*.publishsettings
+.azure/
+.aws/
+artifacts/
+*.secrets.*
+

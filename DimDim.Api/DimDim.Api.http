@@ -1,0 +1,15 @@
+@baseUrl = http://localhost:5000
+
+GET {{baseUrl}}/health
+
+###
+GET {{baseUrl}}/api/usuarios
+
+###
+POST {{baseUrl}}/api/usuarios
+Content-Type: application/json
+
+{"nome":"Giovanna","email":"giovanna@email.com"}
+
+###
+GET {{baseUrl}}/api/transacoes
