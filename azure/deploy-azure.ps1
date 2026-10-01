@@ -13,6 +13,7 @@ param(
     [string]$Workspace = '561439-dimdim-logs',
     [string]$SqlAdmin = 'dimdimadmin',
     [string]$DevelopmentIp,
+    [System.Security.SecureString]$SqlPassword,
     [switch]$EnableSwagger
 )
 $ErrorActionPreference = 'Stop'
@@ -31,11 +32,15 @@ if ($Stage -eq 'Provision') {
     if ($ip.AddressFamily -ne [System.Net.Sockets.AddressFamily]::InterNetwork) { throw 'Use IPv4.' }
     $runtimes = Invoke-Az @('webapp','list-runtimes','--os','linux','-o','tsv')
     if (($runtimes -join ' ') -notmatch 'DOTNETCORE[:|]9.0') { throw '.NET 9 não consta nos runtimes disponíveis. Revise antes de criar recursos.' }
-    $secret = Read-Host 'Senha do administrador SQL (não será gravada)' -AsSecureString
+    $secret = $SqlPassword
+    if (!$secret) { $secret = Read-Host 'Senha do administrador SQL (não será gravada)' -AsSecureString }
     $ptr = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($secret)
     try {
         $password = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($ptr)
-        Invoke-Az @('group','create','--name',$ResourceGroup,'--location',$LOCATION,'-o','none')
+        $groupExists = Invoke-Az @('group','exists','--name',$ResourceGroup,'-o','tsv')
+        if ($groupExists -eq 'false') {
+            Invoke-Az @('group','create','--name',$ResourceGroup,'--location',$LOCATION,'-o','none')
+        }
         Invoke-Az @('sql','server','create','-g',$ResourceGroup,'-n',$SqlServer,'-l',$LOCATION,'-u',$SqlAdmin,'-p',$password,'-o','none')
         Invoke-Az @('sql','db','create','-g',$ResourceGroup,'-s',$SqlServer,'-n',$Database,'--service-objective','Basic','-o','none')
         Invoke-Az @('sql','server','firewall-rule','create','-g',$ResourceGroup,'-s',$SqlServer,'-n','DevelopmentIp','--start-ip-address',$DevelopmentIp,'--end-ip-address',$DevelopmentIp,'-o','none')
@@ -73,13 +78,21 @@ if ($Stage -eq 'Provision') {
     Write-Host 'Recursos preparados. Aplique a migration manualmente após autorização, antes de Deploy.'
 } else {
     $publish = Join-Path $root 'artifacts/publish'
-    $zip = Join-Path $root 'artifacts/dimdim.zip'
+    $zip = Join-Path $root "artifacts/dimdim-$(Get-Date -Format yyyyMMddHHmmssfff).zip"
     # Diretório novo por execução evita arquivos antigos no pacote.
     $publish = "$publish-$(Get-Date -Format yyyyMMddHHmmssfff)"
     & dotnet publish (Join-Path $root 'DimDim.Api/DimDim.Api.csproj') -c Release -o $publish
     if ($LASTEXITCODE -ne 0) { throw 'Publish falhou.' }
-    Compress-Archive -Path (Join-Path $publish '*') -DestinationPath $zip -Force
+    # Linux exige barras / nos caminhos internos do ZIP.
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    Add-Type -AssemblyName System.IO.Compression
+    $archive = [System.IO.Compression.ZipFile]::Open($zip, [System.IO.Compression.ZipArchiveMode]::Create)
+    try {
+        foreach ($file in (Get-ChildItem -LiteralPath $publish -Recurse -File)) {
+            $entry = $file.FullName.Substring($publish.Length + 1).Replace('\', '/')
+            [System.IO.Compression.ZipFileExtensions]::CreateEntryFromFile($archive, $file.FullName, $entry) | Out-Null
+        }
+    } finally { $archive.Dispose() }
     Invoke-Az @('webapp','deploy','-g',$ResourceGroup,'-n',$WebApp,'--src-path',$zip,'--type','zip','-o','none')
     Write-Host "API: https://$WebApp.azurewebsites.net"
 }
-

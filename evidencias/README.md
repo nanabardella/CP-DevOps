@@ -1,7 +1,9 @@
 # Evidências do checkpoint
 
-As evidências reais de Azure SQL/deploy ainda dependem da criação autorizada dos recursos.
-Não há resultados simulados nesta pasta.
+Os recursos foram criados e a API foi publicada. `azure-crud.json` registra respostas HTTP
+e consultas reais do Azure SQL, inclusive após reinício da API. `azure-telemetria.json`
+registra requests e dependências SQL reais do Application Insights. Veja `EXECUCAO-AZURE.md`.
+As capturas de tela para o PDF ainda precisam ser coletadas. Não há resultados simulados.
 
 1. Salve captura do POST de usuário e transação (201, IDs e Location).
 2. Execute database/verify-persistence.sql no Azure SQL Query Editor e capture as linhas.
@@ -13,4 +15,3 @@ Não há resultados simulados nesta pasta.
 8. Registre data, URL, IDs e resultados. Oculte senhas, strings de conexão e dados pessoais.
 
 Execute a coleção uma requisição por vez para capturar o banco antes das exclusões.
-

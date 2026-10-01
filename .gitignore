@@ -14,4 +14,4 @@
 .aws/
 artifacts/
 *.secrets.*
-
+ENTREGA.md

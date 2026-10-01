@@ -93,7 +93,7 @@ Use database update para implantação; o DDL é uma alternativa/evidência. Nã
 
 ## Azure: revisar antes de criar
 
-O script **não foi executado**. SQL Basic, App Service B1 e monitoramento podem gerar cobrança/consumir créditos.
+O script foi executado com autorização em 1 de outubro de 2026; veja [o registro da implantação](evidencias/EXECUCAO-AZURE.md). SQL Basic, App Service B1 e monitoramento podem gerar cobrança/consumir créditos.
 Não assume Brazil South e não altera a assinatura.
 Confira a assinatura e as políticas herdadas (inclusive management groups) no Portal/Azure Policy; listar regiões não comprova que uma região seja permitida:
 
@@ -172,7 +172,7 @@ Use os IDs reais retornados pelo POST. PUT recebe os mesmos campos, sem Id no co
 No Azure SQL Database, abra Query Editor, autentique e execute database/verify-persistence.sql.
 Compare IDs e valores após POST/PUT e ausência após DELETE. Reinicie a API e consulte novamente para provar persistência.
 Excluir um usuário remove todas as suas transações. Siga evidencias/README.md para capturas antes das exclusões.
-**Evidências reais e testes CRUD no Azure estão pendentes da infraestrutura/conexão autorizadas.**
+**CRUD, persistência após reinício e telemetria foram validados no Azure.** Resultados reais em `evidencias/azure-crud.json` e `evidencias/azure-telemetria.json`; as capturas para o PDF continuam pendentes.
 
 ## Application Insights
 
@@ -199,7 +199,7 @@ dependencies
 
 .gitignore exclui bin, obj, .vs, configurações locais, .env, credenciais e artifacts.
 Não versionar senhas, connection strings reais, publish profiles ou capturas com secrets. User Secrets também não são criptografados.
-Revise os arquivos antes de adicionar ao Git. Nenhum git push/publicação foi executado.
+Revise os arquivos antes de adicionar ao Git. O commit `f3f16db` foi confirmado no GitHub; a implantação está publicada, mas as alterações e evidências desta execução ainda precisam de commit/push.
 Se ainda não houver repositório, estes comandos são manuais:
 
 ```powershell

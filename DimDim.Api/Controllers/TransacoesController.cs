@@ -10,15 +10,20 @@ namespace DimDim.Api.Controllers;
 [Route("api/transacoes")]
 public class TransacoesController(AppDbContext db) : ControllerBase
 {
-    private IQueryable<TransacaoResponse> Responses => db.Transacoes.AsNoTracking().OrderBy(x => x.Id)
-        .Select(x => new TransacaoResponse(x.Id, x.Descricao, x.Valor, x.Data, x.UsuarioId,
-            new UsuarioResponse(x.Usuario!.Id, x.Usuario.Nome, x.Usuario.Email)));
+    private IQueryable<TransacaoResponse> Responses(int? id = null)
+    {
+        var query = db.Transacoes.AsNoTracking();
+        if (id.HasValue) query = query.Where(x => x.Id == id.Value);
+        return query.OrderBy(x => x.Id)
+            .Select(x => new TransacaoResponse(x.Id, x.Descricao, x.Valor, x.Data, x.UsuarioId,
+                new UsuarioResponse(x.Usuario!.Id, x.Usuario.Nome, x.Usuario.Email)));
+    }
     [HttpGet]
-    public async Task<ActionResult<List<TransacaoResponse>>> Get(CancellationToken ct) => await Responses.ToListAsync(ct);
+    public async Task<ActionResult<List<TransacaoResponse>>> Get(CancellationToken ct) => await Responses().ToListAsync(ct);
     [HttpGet("{id:int}")]
     public async Task<ActionResult<TransacaoResponse>> GetById(int id, CancellationToken ct)
     {
-        var item = await Responses.FirstOrDefaultAsync(x => x.Id == id, ct);
+        var item = await Responses(id).FirstOrDefaultAsync(ct);
         return item is null ? NotFound() : Ok(item);
     }
     [HttpPost]
@@ -31,7 +36,7 @@ public class TransacoesController(AppDbContext db) : ControllerBase
         try { await db.SaveChangesAsync(ct); }
         catch (DbUpdateException ex) when (ex.InnerException is SqlException { Number: 547 })
         { return BadRequest(new { mensagem = "UsuarioId não existe mais." }); }
-        return CreatedAtAction(nameof(GetById), new { id = item.Id }, await Responses.SingleAsync(x => x.Id == item.Id, ct));
+        return CreatedAtAction(nameof(GetById), new { id = item.Id }, await Responses(item.Id).SingleAsync(ct));
     }
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Put(int id, TransacaoRequest request, CancellationToken ct)
@@ -56,4 +61,3 @@ public class TransacoesController(AppDbContext db) : ControllerBase
         return NoContent();
     }
 }
-
