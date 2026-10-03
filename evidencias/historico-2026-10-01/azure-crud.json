@@ -1,5 +1,5 @@
 ﻿{
-    "executedAtUtc":  "2026-10-03T13:58:36.2169302Z",
+    "executedAtUtc":  "2026-10-01T23:44:17.2591548Z",
     "baseUrl":  "https://dimdim-api-561439-nb261001.azurewebsites.net",
     "results":  [
                     {
@@ -19,9 +19,13 @@
                         "status":  200,
                         "body":  {
                                      "value":  [
-
+                                                   {
+                                                       "id":  1,
+                                                       "nome":  "Teste checkpoint",
+                                                       "email":  "checkpoint-b7e082f4d62d47cf88117f3815f0fd28@example.com"
+                                                   }
                                                ],
-                                     "Count":  0
+                                     "Count":  1
                                  },
                         "location":  null
                     },
@@ -32,9 +36,20 @@
                         "status":  200,
                         "body":  {
                                      "value":  [
-
+                                                   {
+                                                       "id":  1,
+                                                       "descricao":  "Teste de persistencia",
+                                                       "valor":  25.50,
+                                                       "data":  "2026-10-01T23:30:39.567194",
+                                                       "usuarioId":  1,
+                                                       "usuario":  {
+                                                                       "id":  1,
+                                                                       "nome":  "Teste checkpoint",
+                                                                       "email":  "checkpoint-b7e082f4d62d47cf88117f3815f0fd28@example.com"
+                                                                   }
+                                                   }
                                                ],
-                                     "Count":  0
+                                     "Count":  1
                                  },
                         "location":  null
                     },
@@ -44,11 +59,11 @@
                         "path":  "/api/usuarios",
                         "status":  201,
                         "body":  {
-                                     "id":  1,
+                                     "id":  2,
                                      "nome":  "Teste checkpoint",
-                                     "email":  "checkpoint-2694e713e80d4369aa9f93bffb17b3ec@example.com"
+                                     "email":  "checkpoint-9f532703beb84af994d195849b73eef6@example.com"
                                  },
-                        "location":  "https://dimdim-api-561439-nb261001.azurewebsites.net/api/usuarios/1"
+                        "location":  "https://dimdim-api-561439-nb261001.azurewebsites.net/api/usuarios/2"
                     },
                     {
                         "kind":  "http",
@@ -56,66 +71,66 @@
                         "path":  "/api/transacoes",
                         "status":  201,
                         "body":  {
-                                     "id":  1,
+                                     "id":  2,
                                      "descricao":  "Teste de persistencia",
                                      "valor":  25.50,
-                                     "data":  "2026-10-03T13:58:28.6659671",
-                                     "usuarioId":  1,
+                                     "data":  "2026-10-01T23:44:09.3368739",
+                                     "usuarioId":  2,
                                      "usuario":  {
-                                                     "id":  1,
+                                                     "id":  2,
                                                      "nome":  "Teste checkpoint",
-                                                     "email":  "checkpoint-2694e713e80d4369aa9f93bffb17b3ec@example.com"
+                                                     "email":  "checkpoint-9f532703beb84af994d195849b73eef6@example.com"
                                                  }
                                  },
-                        "location":  "https://dimdim-api-561439-nb261001.azurewebsites.net/api/transacoes/1"
+                        "location":  "https://dimdim-api-561439-nb261001.azurewebsites.net/api/transacoes/2"
                     },
                     {
                         "kind":  "sql",
                         "stage":  "apos POST",
                         "usuarios":  [
                                          {
-                                             "Id":  1,
+                                             "Id":  2,
                                              "Nome":  "Teste checkpoint",
-                                             "Email":  "checkpoint-2694e713e80d4369aa9f93bffb17b3ec@example.com"
+                                             "Email":  "checkpoint-9f532703beb84af994d195849b73eef6@example.com"
                                          }
                                      ],
                         "transacoes":  [
                                            {
-                                               "Id":  1,
+                                               "Id":  2,
                                                "Descricao":  "Teste de persistencia",
                                                "Valor":  25.50,
-                                               "Data":  "\/Date(1791046708665)\/",
-                                               "UsuarioId":  1
+                                               "Data":  "\/Date(1790909049336)\/",
+                                               "UsuarioId":  2
                                            }
                                        ]
                     },
                     {
                         "kind":  "http",
                         "method":  "GET",
-                        "path":  "/api/usuarios/1",
+                        "path":  "/api/usuarios/2",
                         "status":  200,
                         "body":  {
-                                     "id":  1,
+                                     "id":  2,
                                      "nome":  "Teste checkpoint",
-                                     "email":  "checkpoint-2694e713e80d4369aa9f93bffb17b3ec@example.com"
+                                     "email":  "checkpoint-9f532703beb84af994d195849b73eef6@example.com"
                                  },
                         "location":  null
                     },
                     {
                         "kind":  "http",
                         "method":  "GET",
-                        "path":  "/api/transacoes/1",
+                        "path":  "/api/transacoes/2",
                         "status":  200,
                         "body":  {
-                                     "id":  1,
+                                     "id":  2,
                                      "descricao":  "Teste de persistencia",
                                      "valor":  25.50,
-                                     "data":  "2026-10-03T13:58:28.6659671",
-                                     "usuarioId":  1,
+                                     "data":  "2026-10-01T23:44:09.3368739",
+                                     "usuarioId":  2,
                                      "usuario":  {
-                                                     "id":  1,
+                                                     "id":  2,
                                                      "nome":  "Teste checkpoint",
-                                                     "email":  "checkpoint-2694e713e80d4369aa9f93bffb17b3ec@example.com"
+                                                     "email":  "checkpoint-9f532703beb84af994d195849b73eef6@example.com"
                                                  }
                                  },
                         "location":  null
@@ -125,25 +140,25 @@
                         "stage":  "apos reinicio da API",
                         "usuarios":  [
                                          {
-                                             "Id":  1,
+                                             "Id":  2,
                                              "Nome":  "Teste checkpoint",
-                                             "Email":  "checkpoint-2694e713e80d4369aa9f93bffb17b3ec@example.com"
+                                             "Email":  "checkpoint-9f532703beb84af994d195849b73eef6@example.com"
                                          }
                                      ],
                         "transacoes":  [
                                            {
-                                               "Id":  1,
+                                               "Id":  2,
                                                "Descricao":  "Teste de persistencia",
                                                "Valor":  25.50,
-                                               "Data":  "\/Date(1791046708665)\/",
-                                               "UsuarioId":  1
+                                               "Data":  "\/Date(1790909049336)\/",
+                                               "UsuarioId":  2
                                            }
                                        ]
                     },
                     {
                         "kind":  "http",
                         "method":  "PUT",
-                        "path":  "/api/usuarios/1",
+                        "path":  "/api/usuarios/2",
                         "status":  204,
                         "body":  null,
                         "location":  null
@@ -151,7 +166,7 @@
                     {
                         "kind":  "http",
                         "method":  "PUT",
-                        "path":  "/api/transacoes/1",
+                        "path":  "/api/transacoes/2",
                         "status":  204,
                         "body":  null,
                         "location":  null
@@ -161,25 +176,25 @@
                         "stage":  "apos PUT",
                         "usuarios":  [
                                          {
-                                             "Id":  1,
+                                             "Id":  2,
                                              "Nome":  "Teste atualizado",
-                                             "Email":  "checkpoint-2694e713e80d4369aa9f93bffb17b3ec@example.com"
+                                             "Email":  "checkpoint-9f532703beb84af994d195849b73eef6@example.com"
                                          }
                                      ],
                         "transacoes":  [
                                            {
-                                               "Id":  1,
+                                               "Id":  2,
                                                "Descricao":  "Teste de persistencia",
                                                "Valor":  42.75,
-                                               "Data":  "\/Date(1791046708665)\/",
-                                               "UsuarioId":  1
+                                               "Data":  "\/Date(1790909049336)\/",
+                                               "UsuarioId":  2
                                            }
                                        ]
                     },
                     {
                         "kind":  "http",
                         "method":  "DELETE",
-                        "path":  "/api/transacoes/1",
+                        "path":  "/api/transacoes/2",
                         "status":  204,
                         "body":  null,
                         "location":  null
@@ -189,9 +204,9 @@
                         "stage":  "apos DELETE transacao",
                         "usuarios":  [
                                          {
-                                             "Id":  1,
+                                             "Id":  2,
                                              "Nome":  "Teste atualizado",
-                                             "Email":  "checkpoint-2694e713e80d4369aa9f93bffb17b3ec@example.com"
+                                             "Email":  "checkpoint-9f532703beb84af994d195849b73eef6@example.com"
                                          }
                                      ],
                         "transacoes":  [
@@ -204,23 +219,23 @@
                         "path":  "/api/transacoes",
                         "status":  201,
                         "body":  {
-                                     "id":  2,
+                                     "id":  3,
                                      "descricao":  "Teste de persistencia",
                                      "valor":  42.75,
-                                     "data":  "2026-10-03T13:58:28.6659671",
-                                     "usuarioId":  1,
+                                     "data":  "2026-10-01T23:44:09.3368739",
+                                     "usuarioId":  2,
                                      "usuario":  {
-                                                     "id":  1,
+                                                     "id":  2,
                                                      "nome":  "Teste atualizado",
-                                                     "email":  "checkpoint-2694e713e80d4369aa9f93bffb17b3ec@example.com"
+                                                     "email":  "checkpoint-9f532703beb84af994d195849b73eef6@example.com"
                                                  }
                                  },
-                        "location":  "https://dimdim-api-561439-nb261001.azurewebsites.net/api/transacoes/2"
+                        "location":  "https://dimdim-api-561439-nb261001.azurewebsites.net/api/transacoes/3"
                     },
                     {
                         "kind":  "http",
                         "method":  "DELETE",
-                        "path":  "/api/usuarios/1",
+                        "path":  "/api/usuarios/2",
                         "status":  204,
                         "body":  null,
                         "location":  null

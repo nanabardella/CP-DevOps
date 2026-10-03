@@ -172,7 +172,7 @@ Use os IDs reais retornados pelo POST. PUT recebe os mesmos campos, sem Id no co
 No Azure SQL Database, abra Query Editor, autentique e execute database/verify-persistence.sql.
 Compare IDs e valores após POST/PUT e ausência após DELETE. Reinicie a API e consulte novamente para provar persistência.
 Excluir um usuário remove todas as suas transações. Siga evidencias/README.md para capturas antes das exclusões.
-**CRUD, persistência após reinício e telemetria foram validados no Azure.** Resultados reais em `evidencias/azure-crud.json` e `evidencias/azure-telemetria.json`; as capturas para o PDF continuam pendentes.
+**Os recursos foram recriados em 3 de outubro de 2026; CRUD e persistência após reinício foram revalidados no Azure.** Resultados reais em `evidencias/azure-crud.json`. As capturas em `evidencias/prints-2026-10-03` comprovam requests e dependências SQL no novo Application Insights; o JSON de telemetria preserva a consulta anterior vazia. As evidências da execução original, incluindo telemetria, estão em `evidencias/historico-2026-10-01`. O relatório está em [DimDim_webapp.pdf](evidencias/DimDim_webapp.pdf), com 21 capturas selecionadas.
 
 ## Application Insights
 

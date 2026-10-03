@@ -1,18 +1,12 @@
-# Execução real no Azure — 3 de outubro de 2026
-
-Os recursos da execução de 1 de outubro foram excluídos pelo usuário. O grupo e
-todos os serviços foram recriados em 3 de outubro, com os mesmos nomes e URL.
-A migration foi aplicada ao banco novo; deploy, Swagger (200), CRUD, consultas
-SQL, persistência após reinício e cascade passaram novamente. Os arquivos desta
-pasta registram a nova execução; os anteriores estão em `historico-2026-10-01`.
+# Execução real no Azure — 1 de outubro de 2026
 
 - API: https://dimdim-api-561439-nb261001.azurewebsites.net
 - Swagger: https://dimdim-api-561439-nb261001.azurewebsites.net/swagger
-- Grupo: `561439-dimdim-rg` (metadados em Mexico Central).
+- Grupo: `561439-dimdim-rg` (metadados em East US 2).
 - Recursos em Mexico Central: SQL Server `dimdim-sql-561439-nb261001-mx`, banco `dimdim-db`, plano B1 `561439-dimdim-plan`, Web App `dimdim-api-561439-nb261001`, Application Insights `561439-dimdim-insights` e workspace `561439-dimdim-logs`.
 - Migration aplicada: `20261001224624_InitialCreate`.
 
-Na execução original, East US 2, East US e South Central US recusaram novos servidores SQL com
+East US 2, East US e South Central US recusaram novos servidores SQL com
 `RegionDoesNotAllowProvisioning`. Mexico Central permitiu a criação.
 
 O deploy usa ZIP com barras `/`, compatíveis com Linux. Foi corrigido um filtro no
@@ -30,13 +24,14 @@ o EF Core traduza a consulta SQL no POST e no GET por ID.
 - DELETE de transação: 204; SQL confirmou a remoção.
 - DELETE de usuário com outra transação: 204; SQL confirmou cascade.
 
-Os registros fictícios criados pelo teste desta execução foram removidos.
-As capturas em `prints-2026-10-03` comprovam a coleta do novo Application Insights. A telemetria
-da execução original, com 27 requests e 25 dependências, foi preservada em
-`historico-2026-10-01/azure-telemetria.json`.
+Os registros de teste desta execução e da tentativa anterior foram removidos.
+`azure-telemetria.json` contém 27 requests e 25 dependências na coleta realizada,
+incluindo dependências SQL bem-sucedidas. A telemetria também preserva erros da
+primeira versão e sondagens 404 da plataforma; isso não representa o resultado
+final do CRUD, registrado separadamente.
 
 `dotnet build --no-restore` passou com zero erros e zero avisos após a correção.
-As 21 capturas selecionadas estão em `prints-2026-10-03`; o relatório foi gerado em [DimDim_webapp.pdf](DimDim_webapp.pdf).
+As capturas de tela e o PDF final continuam pendentes.
 
 ## Remoção após entrega
 

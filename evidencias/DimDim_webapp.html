@@ -1,0 +1,199 @@
+﻿<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>DimDim — Entrega</title>
+<style>
+@page { size: A4; margin: 16mm; } body { font-family: Arial,sans-serif; color:#172b42; font-size:11pt; line-height:1.5; }
+h1 {font-size:32pt;color:#087e99} h2 {font-size:19pt;color:#087e99} h3 {font-size:14pt}
+.page {break-before:page} .cover {padding-top:35mm} a {color:#006b91;overflow-wrap:anywhere}
+pre {background:#eff4f7;padding:12px;white-space:pre-wrap;font-size:9pt;color:#172b42;overflow-wrap:anywhere}
+img {width:100%;max-height:190mm;object-fit:contain} .caption {font-size:10pt;color:#46566a}
+table {width:100%;border-collapse:collapse} td,th {border-bottom:1px solid #ccd8df;text-align:left;padding:7px}
+</style><body>
+<section class="cover"><h1>DimDim Cloud</h1><h2>Checkpoint — API, Azure SQL e monitoramento</h2>
+<p><strong>Grupo: DimDim</strong></p>
+<p>RM561439 — Giovanna Bardella Gomes<br>RM566059 — Erick Takeshi Andrade Nakajune</p>
+<p>Entrega preparada com evidências de 3 de outubro de 2026.</p>
+<p>GitHub: <a href="https://github.com/nanabardella/CP-DevOps">github.com/nanabardella/CP-DevOps</a></p>
+<p>API / Swagger:<br><a href="https://dimdim-api-561439-nb261001.azurewebsites.net/swagger">https://dimdim-api-561439-nb261001.azurewebsites.net/swagger</a></p></section>
+<section class="page"><h2>1. Arquitetura e banco de dados</h2>
+<p>A API financeira usa ASP.NET Core (.NET 9), Entity Framework Core e Azure SQL Database. Os controllers recebem DTOs validados e persistem usuários e transações pelo AppDbContext.</p>
+<pre>Swagger / Postman → API no Azure App Service → EF Core → Azure SQL
+                              ↓
+                       Application Insights
+
+Usuarios.Id (PK) ── 1:N ── Transacoes.UsuarioId (FK)</pre>
+<p>Usuarios possui Id, Nome e Email; Transacoes possui Id, Descricao, Valor, Data e UsuarioId. O email é único, o valor usa decimal(18,2) e a FK aplica ON DELETE CASCADE.</p>
+<p>Recursos em Mexico Central: grupo 561439-dimdim-rg, Web App dimdim-api-561439-nb261001, SQL Server dimdim-sql-561439-nb261001-mx, banco dimdim-db, plano B1, Application Insights 561439-dimdim-insights e workspace 561439-dimdim-logs.</p>
+<h3>Arquivos da implementação</h3>
+<ul><li><a href="https://github.com/nanabardella/CP-DevOps/blob/main/README.md">README: instruções completas</a></li>
+<li><a href="https://github.com/nanabardella/CP-DevOps/blob/main/azure/deploy-azure.ps1">azure/deploy-azure.ps1: criação e deploy por Azure CLI</a></li>
+<li><a href="https://github.com/nanabardella/CP-DevOps/blob/main/database/ddl.sql">database/ddl.sql: DDL</a></li>
+<li><a href="https://github.com/nanabardella/CP-DevOps/blob/main/postman/DimDim.postman_collection.json">Coleção Postman</a></li></ul></section>
+<section class="page"><h2>2. How-to de implantação</h2>
+<ol><li>Instalar SDK .NET 9 e Azure CLI; executar az login e conferir assinatura, políticas e região.</li>
+<li>Executar o estágio Provision do script, informando região, nomes únicos e IPv4 de desenvolvimento. A senha SQL é solicitada pelo script.</li>
+<li>O script cria grupo, SQL Server, banco Basic, firewall, plano B1, Web App Linux, workspace e Application Insights. Configura DefaultConnection e a telemetria no App Service.</li>
+<li>Configurar localmente ConnectionStrings__DefaultConnection com a conexão Azure SQL em memória e aplicar a migration existente.</li>
+<li>Executar o estágio Deploy: publicação Release, ZIP e az webapp deploy.</li>
+<li>Abrir /swagger, importar a coleção Postman com a URL Azure e executar CRUD; conferir os mesmos IDs no Query Editor e a telemetria no Application Insights.</li></ol>
+<pre>dotnet restore
+dotnet build
+az extension add --name application-insights
+
+.\azure\deploy-azure.ps1 -Stage Provision -LOCATION mexicocentral -SqlServer 'SERVIDOR_UNICO' -WebApp 'WEBAPP_UNICO' -DevelopmentIp 'SEU_IPV4' -EnableSwagger
+
+# Com ConnectionStrings__DefaultConnection configurada em memória:
+dotnet ef database update --project .\DimDim.Api --startup-project .\DimDim.Api
+
+.\azure\deploy-azure.ps1 -Stage Deploy -LOCATION mexicocentral -WebApp 'WEBAPP_UNICO'</pre>
+<p>Os comandos acima descrevem uma nova implantação. A migration aplicada na execução foi 20261001224624_InitialCreate. A configuração detalhada da conexão está no README; credenciais não fazem parte desta entrega.</p></section>
+<section class="page"><h2>3. DDL do banco</h2><pre>IF OBJECT_ID(N&#39;[__EFMigrationsHistory]&#39;) IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+GO
+
+BEGIN TRANSACTION;
+CREATE TABLE [Usuarios] (
+    [Id] int NOT NULL IDENTITY,
+    [Nome] nvarchar(100) NOT NULL,
+    [Email] nvarchar(150) NOT NULL,
+    CONSTRAINT [PK_Usuarios] PRIMARY KEY ([Id])
+);
+
+CREATE TABLE [Transacoes] (
+    [Id] int NOT NULL IDENTITY,
+    [Descricao] nvarchar(200) NOT NULL,
+    [Valor] decimal(18,2) NOT NULL,
+    [Data] datetime2 NOT NULL,
+    [UsuarioId] int NOT NULL,
+    CONSTRAINT [PK_Transacoes] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Transacoes_Usuarios_UsuarioId] FOREIGN KEY ([UsuarioId]) REFERENCES [Usuarios] ([Id]) ON DELETE CASCADE
+);
+
+CREATE INDEX [IX_Transacoes_UsuarioId] ON [Transacoes] ([UsuarioId]);
+
+CREATE UNIQUE INDEX [IX_Usuarios_Email] ON [Usuarios] ([Email]);
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N&#39;20261001224624_InitialCreate&#39;, N&#39;9.0.10&#39;);
+
+COMMIT;
+GO
+
+</pre></section>
+<section class="page"><h2>4. Leitura das evidências</h2>
+<p>As páginas seguintes apresentam as 21 capturas selecionadas. POST retorna 201; GET retorna 200; PUT e DELETE retornam 204. O 404 da transação 3 após o DELETE é esperado.</p>
+<p>O primeiro POST de usuário retorna ID 2. A sequência de transações usa a transação 3 vinculada ao usuário 4 (Ana), cuja existência é mostrada no SQL. São registros distintos.</p>
+<p>As capturas de requests incluem respostas 400/404 junto com operações bem-sucedidas. O motivo do 400 não é demonstrado pelas imagens. As dependências SQL mostram success=True.</p>
+<p>Persistência após reinício e cascade foram validados na execução automatizada registrada em evidencias/azure-crud.json. Os trechos SQL desse registro aparecem ao final. As 21 capturas não comprovam visualmente o reinício ou cascade.</p>
+<p>As capturas complementares enviadas no chat mostram usuário 5 e transação 4, mas não foram incorporadas a este arquivo: o registro visual de reinício e a última consulta de cascade não estavam completos.</p></section>
+<section class="page"><h2>01 azure grupo recursos</h2><img src="prints-2026-10-03/01-azure-grupo-recursos.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>02 application insights vinculo</h2><img src="prints-2026-10-03/02-application-insights-vinculo.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>03 azure sql servidor</h2><img src="prints-2026-10-03/03-azure-sql-servidor.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>04 usuarios get inicial vazio 200</h2><img src="prints-2026-10-03/04-usuarios-get-inicial-vazio-200.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>05 usuarios post id2 201</h2><img src="prints-2026-10-03/05-usuarios-post-id2-201.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>06 usuarios get id2 200</h2><img src="prints-2026-10-03/06-usuarios-get-id2-200.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>07 transacoes post id3 201</h2><img src="prints-2026-10-03/07-transacoes-post-id3-201.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>08 sql transacao id3 criada</h2><img src="prints-2026-10-03/08-sql-transacao-id3-criada.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>09 sql usuario id4</h2><img src="prints-2026-10-03/09-sql-usuario-id4.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>10 transacoes get 200</h2><img src="prints-2026-10-03/10-transacoes-get-200.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>11 transacoes put id3 204</h2><img src="prints-2026-10-03/11-transacoes-put-id3-204.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>12 sql transacao id3 atualizada</h2><img src="prints-2026-10-03/12-sql-transacao-id3-atualizada.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>13 transacoes delete id3 204</h2><img src="prints-2026-10-03/13-transacoes-delete-id3-204.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>14 sql transacao id3 excluida</h2><img src="prints-2026-10-03/14-sql-transacao-id3-excluida.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>15 transacoes consulta id3 excluido 404</h2><img src="prints-2026-10-03/15-transacoes-consulta-id3-excluido-404.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>16 usuarios put id4 204</h2><img src="prints-2026-10-03/16-usuarios-put-id4-204.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>17 sql usuario id4 atualizado</h2><img src="prints-2026-10-03/17-sql-usuario-id4-atualizado.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>18 usuarios delete id4 204</h2><img src="prints-2026-10-03/18-usuarios-delete-id4-204.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>19 sql usuario id4 excluido</h2><img src="prints-2026-10-03/19-sql-usuario-id4-excluido.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>20 application insights requests</h2><img src="prints-2026-10-03/20-application-insights-requests.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>21 application insights dependencias sql</h2><img src="prints-2026-10-03/21-application-insights-dependencias-sql.png"><p class="caption">Captura real da execução no Azure em 3 de outubro de 2026.</p></section>
+<section class="page"><h2>5. Persistência e cascade — registro de execução</h2><p>Fonte: evidencias/azure-crud.json. Execução registrada em UTC: 2026-10-03T13:58:36.2169302Z.</p><p>Os resultados abaixo pertencem ao teste automatizado, com IDs próprios; não devem ser confundidos com os IDs da sequência de prints.</p><p><a href="https://github.com/nanabardella/CP-DevOps/blob/main/evidencias/azure-crud.json">Registro JSON completo</a> · <a href="https://github.com/nanabardella/CP-DevOps/blob/main/evidencias/EXECUCAO-AZURE.md">Relato da execução</a></p></section>
+<section class="page"><h2>SQL: apos POST</h2><pre>{
+    &quot;kind&quot;:  &quot;sql&quot;,
+    &quot;stage&quot;:  &quot;apos POST&quot;,
+    &quot;usuarios&quot;:  [
+                     {
+                         &quot;Id&quot;:  1,
+                         &quot;Nome&quot;:  &quot;Teste checkpoint&quot;,
+                         &quot;Email&quot;:  &quot;checkpoint-2694e713e80d4369aa9f93bffb17b3ec@example.com&quot;
+                     }
+                 ],
+    &quot;transacoes&quot;:  [
+                       {
+                           &quot;Id&quot;:  1,
+                           &quot;Descricao&quot;:  &quot;Teste de persistencia&quot;,
+                           &quot;Valor&quot;:  25.50,
+                           &quot;Data&quot;:  &quot;\/Date(1791046708665)\/&quot;,
+                           &quot;UsuarioId&quot;:  1
+                       }
+                   ]
+}</pre></section>
+<section class="page"><h2>SQL: apos reinicio da API</h2><pre>{
+    &quot;kind&quot;:  &quot;sql&quot;,
+    &quot;stage&quot;:  &quot;apos reinicio da API&quot;,
+    &quot;usuarios&quot;:  [
+                     {
+                         &quot;Id&quot;:  1,
+                         &quot;Nome&quot;:  &quot;Teste checkpoint&quot;,
+                         &quot;Email&quot;:  &quot;checkpoint-2694e713e80d4369aa9f93bffb17b3ec@example.com&quot;
+                     }
+                 ],
+    &quot;transacoes&quot;:  [
+                       {
+                           &quot;Id&quot;:  1,
+                           &quot;Descricao&quot;:  &quot;Teste de persistencia&quot;,
+                           &quot;Valor&quot;:  25.50,
+                           &quot;Data&quot;:  &quot;\/Date(1791046708665)\/&quot;,
+                           &quot;UsuarioId&quot;:  1
+                       }
+                   ]
+}</pre></section>
+<section class="page"><h2>SQL: apos PUT</h2><pre>{
+    &quot;kind&quot;:  &quot;sql&quot;,
+    &quot;stage&quot;:  &quot;apos PUT&quot;,
+    &quot;usuarios&quot;:  [
+                     {
+                         &quot;Id&quot;:  1,
+                         &quot;Nome&quot;:  &quot;Teste atualizado&quot;,
+                         &quot;Email&quot;:  &quot;checkpoint-2694e713e80d4369aa9f93bffb17b3ec@example.com&quot;
+                     }
+                 ],
+    &quot;transacoes&quot;:  [
+                       {
+                           &quot;Id&quot;:  1,
+                           &quot;Descricao&quot;:  &quot;Teste de persistencia&quot;,
+                           &quot;Valor&quot;:  42.75,
+                           &quot;Data&quot;:  &quot;\/Date(1791046708665)\/&quot;,
+                           &quot;UsuarioId&quot;:  1
+                       }
+                   ]
+}</pre></section>
+<section class="page"><h2>SQL: apos DELETE transacao</h2><pre>{
+    &quot;kind&quot;:  &quot;sql&quot;,
+    &quot;stage&quot;:  &quot;apos DELETE transacao&quot;,
+    &quot;usuarios&quot;:  [
+                     {
+                         &quot;Id&quot;:  1,
+                         &quot;Nome&quot;:  &quot;Teste atualizado&quot;,
+                         &quot;Email&quot;:  &quot;checkpoint-2694e713e80d4369aa9f93bffb17b3ec@example.com&quot;
+                     }
+                 ],
+    &quot;transacoes&quot;:  [
+
+                   ]
+}</pre></section>
+<section class="page"><h2>SQL: apos DELETE usuario com cascade</h2><pre>{
+    &quot;kind&quot;:  &quot;sql&quot;,
+    &quot;stage&quot;:  &quot;apos DELETE usuario com cascade&quot;,
+    &quot;usuarios&quot;:  [
+
+                 ],
+    &quot;transacoes&quot;:  [
+
+                   ]
+}</pre></section>
+</body></html>

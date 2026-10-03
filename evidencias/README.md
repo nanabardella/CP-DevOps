@@ -1,9 +1,10 @@
 # Evidências do checkpoint
 
-Os recursos foram criados e a API foi publicada. `azure-crud.json` registra respostas HTTP
-e consultas reais do Azure SQL, inclusive após reinício da API. `azure-telemetria.json`
-registra requests e dependências SQL reais do Application Insights. Veja `EXECUCAO-AZURE.md`.
-As capturas de tela para o PDF ainda precisam ser coletadas. Não há resultados simulados.
+Os recursos foram recriados em 3 de outubro de 2026 e a API foi publicada.
+`azure-crud.json` registra respostas HTTP e consultas reais do Azure SQL, inclusive
+após reinício da API. As capturas em `prints-2026-10-03` comprovam requests e dependências SQL no novo Application Insights; `azure-telemetria.json` preserva a consulta anterior vazia. As evidências de 1 de outubro, incluindo telemetria real,
+estão preservadas em `historico-2026-10-01`. Veja `EXECUCAO-AZURE.md`.
+21 capturas selecionadas para o PDF estão em [prints-2026-10-03](prints-2026-10-03/README.md), com índice e limites do que demonstram. Não há resultados simulados.
 
 1. Salve captura do POST de usuário e transação (201, IDs e Location).
 2. Execute database/verify-persistence.sql no Azure SQL Query Editor e capture as linhas.

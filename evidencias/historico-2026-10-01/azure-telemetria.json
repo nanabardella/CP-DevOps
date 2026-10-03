@@ -1,0 +1,369 @@
+﻿{
+    "collectedAtUtc":  "2026-10-01T23:45:23.6073660Z",
+    "requests":  {
+                     "tables":  [
+                                    {
+                                        "columns":  [
+                                                        {
+                                                            "name":  "timestamp",
+                                                            "type":  "datetime"
+                                                        },
+                                                        {
+                                                            "name":  "name",
+                                                            "type":  "string"
+                                                        },
+                                                        {
+                                                            "name":  "resultCode",
+                                                            "type":  "string"
+                                                        },
+                                                        {
+                                                            "name":  "success",
+                                                            "type":  "string"
+                                                        }
+                                                    ],
+                                        "name":  "PrimaryResult",
+                                        "rows":  [
+                                                     [
+                                                         "2026-10-01T23:42:37.3425336Z",
+                                                         "DELETE Usuarios/Delete [id]",
+                                                         "204",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:42:36.9074166Z",
+                                                         "POST Transacoes/Post",
+                                                         "201",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:42:36.3833767Z",
+                                                         "DELETE Transacoes/Delete [id]",
+                                                         "204",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:42:35.7203066Z",
+                                                         "PUT Transacoes/Put [id]",
+                                                         "204",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:42:35.1232642Z",
+                                                         "PUT Usuarios/Put [id]",
+                                                         "204",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:42:34.4895976Z",
+                                                         "GET Transacoes/GetById [id]",
+                                                         "200",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:42:33.8590307Z",
+                                                         "GET Usuarios/GetById [id]",
+                                                         "200",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:42:33.6480222Z",
+                                                         "GET /health",
+                                                         "200",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:42:29.9284135Z",
+                                                         "POST Transacoes/Post",
+                                                         "201",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:42:28.6643694Z",
+                                                         "POST Usuarios/Post",
+                                                         "201",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:42:27.7711587Z",
+                                                         "GET Transacoes/Get",
+                                                         "200",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:42:08.2475778Z",
+                                                         "GET Usuarios/Get",
+                                                         "200",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:42:07.6239063Z",
+                                                         "GET /health",
+                                                         "200",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:36:54.2063125Z",
+                                                         "GET /robots933456.txt",
+                                                         "404",
+                                                         "False"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:36:14.6207731Z",
+                                                         "GET /",
+                                                         "404",
+                                                         "False"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:29:01.8626242Z",
+                                                         "GET /swagger/v1/swagger.json",
+                                                         "200",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:29:00.1539147Z",
+                                                         "POST Transacoes/Post",
+                                                         "500",
+                                                         "False"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:28:58.7523044Z",
+                                                         "POST Usuarios/Post",
+                                                         "201",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:28:50.552568Z",
+                                                         "GET Transacoes/Get",
+                                                         "200",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:28:42.5995854Z",
+                                                         "GET /robots933456.txt",
+                                                         "404",
+                                                         "False"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:28:41.9525969Z",
+                                                         "GET Usuarios/Get",
+                                                         "200",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:28:41.576554Z",
+                                                         "GET /health",
+                                                         "200",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:28:25.0119581Z",
+                                                         "GET /health",
+                                                         "200",
+                                                         "True"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:27:57.9860949Z",
+                                                         "GET /",
+                                                         "404",
+                                                         "False"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:25:56.0590927Z",
+                                                         "GET /",
+                                                         "404",
+                                                         "False"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:25:55.8954268Z",
+                                                         "GET /",
+                                                         "404",
+                                                         "False"
+                                                     ],
+                                                     [
+                                                         "2026-10-01T23:25:53.0357717Z",
+                                                         "GET /robots933456.txt",
+                                                         "404",
+                                                         "False"
+                                                     ]
+                                                 ]
+                                    }
+                                ]
+                 },
+    "dependencies":  {
+                         "tables":  [
+                                        {
+                                            "columns":  [
+                                                            {
+                                                                "name":  "timestamp",
+                                                                "type":  "datetime"
+                                                            },
+                                                            {
+                                                                "name":  "name",
+                                                                "type":  "string"
+                                                            },
+                                                            {
+                                                                "name":  "type",
+                                                                "type":  "string"
+                                                            },
+                                                            {
+                                                                "name":  "success",
+                                                                "type":  "string"
+                                                            }
+                                                        ],
+                                            "name":  "PrimaryResult",
+                                            "rows":  [
+                                                         [
+                                                             "2026-10-01T23:42:37.3922774Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:37.3638844Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:37.1206227Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:37.1111539Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:37.1076054Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:36.5041947Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:36.4215487Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:36.0084928Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:35.9863625Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:35.9573392Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:35.514057Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:35.4762162Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:34.7481245Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:34.2698705Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:30.4552608Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:30.3979031Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:30.2690484Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:29.5029102Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:28.2990503Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:42:27.1846637Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:29:00.6618985Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:29:00.5416622Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:28:59.6504878Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:28:58.0374648Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ],
+                                                         [
+                                                             "2026-10-01T23:28:50.032758Z",
+                                                             "SQL: tcp:dimdim-sql-561439-nb261001-mx.database.windows.net,1433 | dimdim-db",
+                                                             "SQL",
+                                                             "True"
+                                                         ]
+                                                     ]
+                                        }
+                                    ]
+                     }
+}

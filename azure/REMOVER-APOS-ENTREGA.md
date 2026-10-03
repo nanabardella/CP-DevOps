@@ -1,8 +1,9 @@
 # Remover recursos depois da entrega
 
 Os recursos deste checkpoint usam o grupo `561439-dimdim-rg`. O grupo mantém seus
-metadados em `eastus2`; o servidor SQL e o banco foram criados em `mexicocentral`
-após recusas de provisionamento nas regiões inicialmente testadas.
+metadados e todos os recursos em `mexicocentral` na recriação de 3 de outubro de 2026.
+Na execução original, o grupo usava `eastus2`; Mexico Central foi escolhida para
+os serviços após recusas de provisionamento nas regiões inicialmente testadas.
 
 Após concluir a entrega e salvar as evidências, confira o conteúdo do grupo:
 
