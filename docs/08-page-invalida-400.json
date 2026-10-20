@@ -1,0 +1,28 @@
+{
+    "name":  "08-page-invalida-400",
+    "executedAtUtc":  "2026-10-20T19:28:18.2215725Z",
+    "method":  "GET",
+    "url":  "https://dimdim-api-561439-nb261001.azurewebsites.net/api/transacoes?page=0",
+    "requestHeaders":  {
+
+                       },
+    "status":  400,
+    "headers":  {
+                    "Pragma":  "no-cache",
+                    "Transfer-Encoding":  "chunked",
+                    "api-supported-versions":  "2.0",
+                    "api-deprecated-versions":  "1.0",
+                    "Cache-Control":  "no-store, no-cache",
+                    "Date":  "Tue, 20 Oct 2026 19:28:13 GMT",
+                    "Server":  "Kestrel",
+                    "Content-Type":  "application/problem+json",
+                    "Expires":  "-1"
+                },
+    "body":  {
+                 "type":  "https://tools.ietf.org/html/rfc9110#section-15.5.1",
+                 "title":  "page deve ser um inteiro maior ou igual a 1.",
+                 "status":  400,
+                 "traceId":  "0HNPES0ASI1IE:0000001C"
+             },
+    "rawBody":  "{\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"page deve ser um inteiro maior ou igual a 1.\",\"status\":400,\"traceId\":\"0HNPES0ASI1IE:0000001C\"}"
+}

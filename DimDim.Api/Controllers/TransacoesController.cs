@@ -1,63 +1,26 @@
-using DimDim.Api.Data;
+using Asp.Versioning;
 using DimDim.Api.DTOs;
-using DimDim.Api.Models;
+using DimDim.Application;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.RateLimiting;
 namespace DimDim.Api.Controllers;
-
-[ApiController]
-[Route("api/transacoes")]
-public class TransacoesController(AppDbContext db) : ControllerBase
+[ApiController, Route("api/transacoes")]
+[ApiVersion("1.0", Deprecated = true), ApiVersion("2.0")]
+public class TransacoesController(TransacaoService service) : ControllerBase
 {
-    private IQueryable<TransacaoResponse> Responses(int? id = null)
-    {
-        var query = db.Transacoes.AsNoTracking();
-        if (id.HasValue) query = query.Where(x => x.Id == id.Value);
-        return query.OrderBy(x => x.Id)
-            .Select(x => new TransacaoResponse(x.Id, x.Descricao, x.Valor, x.Data, x.UsuarioId,
-                new UsuarioResponse(x.Usuario!.Id, x.Usuario.Nome, x.Usuario.Email)));
-    }
-    [HttpGet]
-    public async Task<ActionResult<List<TransacaoResponse>>> Get(CancellationToken ct) => await Responses().ToListAsync(ct);
+    [HttpGet, MapToApiVersion("1.0")]
+    public async Task<ActionResult<List<TransacaoResponse>>> GetV1(CancellationToken ct) => Ok(await service.GetAll(ct));
+    [HttpGet, MapToApiVersion("2.0")]
+    public async Task<ActionResult<PagedResult<TransacaoResponse>>> GetV2(CancellationToken ct, [FromQuery] int page = 1, [FromQuery] int pageSize = 20) => Ok(await service.GetPaged(page, pageSize, ct));
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<TransacaoResponse>> GetById(int id, CancellationToken ct)
-    {
-        var item = await Responses(id).FirstOrDefaultAsync(ct);
-        return item is null ? NotFound() : Ok(item);
-    }
-    [HttpPost]
+    public async Task<ActionResult<TransacaoResponse>> GetById(int id, CancellationToken ct) => Ok(await service.GetById(id, ct));
+    [HttpPost, EnableRateLimiting("escrita")]
     public async Task<ActionResult<TransacaoResponse>> Post(TransacaoRequest request, CancellationToken ct)
     {
-        if (!await db.Usuarios.AnyAsync(x => x.Id == request.UsuarioId, ct))
-            return BadRequest(new { mensagem = "UsuarioId não existe." });
-        var item = new Transacao { Descricao = request.Descricao.Trim(), Valor = request.Valor, Data = request.Data, UsuarioId = request.UsuarioId };
-        db.Transacoes.Add(item);
-        try { await db.SaveChangesAsync(ct); }
-        catch (DbUpdateException ex) when (ex.InnerException is SqlException { Number: 547 })
-        { return BadRequest(new { mensagem = "UsuarioId não existe mais." }); }
-        return CreatedAtAction(nameof(GetById), new { id = item.Id }, await Responses(item.Id).SingleAsync(ct));
+        var item = await service.Create(request, ct); return CreatedAtAction(nameof(GetById), new { id = item.Id }, item);
     }
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> Put(int id, TransacaoRequest request, CancellationToken ct)
-    {
-        var item = await db.Transacoes.FindAsync([id], ct);
-        if (item is null) return NotFound();
-        if (!await db.Usuarios.AnyAsync(x => x.Id == request.UsuarioId, ct))
-            return BadRequest(new { mensagem = "UsuarioId não existe." });
-        item.Descricao = request.Descricao.Trim(); item.Valor = request.Valor;
-        item.Data = request.Data; item.UsuarioId = request.UsuarioId;
-        try { await db.SaveChangesAsync(ct); }
-        catch (DbUpdateException ex) when (ex.InnerException is SqlException { Number: 547 })
-        { return BadRequest(new { mensagem = "UsuarioId não existe mais." }); }
-        return NoContent();
-    }
+    public async Task<IActionResult> Put(int id, TransacaoRequest request, CancellationToken ct) { await service.Update(id, request, ct); return NoContent(); }
     [HttpDelete("{id:int}")]
-    public async Task<IActionResult> Delete(int id, CancellationToken ct)
-    {
-        var item = await db.Transacoes.FindAsync([id], ct);
-        if (item is null) return NotFound();
-        db.Transacoes.Remove(item); await db.SaveChangesAsync(ct);
-        return NoContent();
-    }
+    public async Task<IActionResult> Delete(int id, CancellationToken ct) { await service.Delete(id, ct); return NoContent(); }
 }

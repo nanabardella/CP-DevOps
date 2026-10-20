@@ -1,218 +1,148 @@
-# DimDim Cloud — RM 561439
+# DimDim — CP5: versões, paginação e rate limit
 
-API financeira para o checkpoint: usuários e suas transações persistidos em Azure SQL Database, com implantação por Azure CLI e monitoramento no Application Insights.
+- **RM561439 — Giovanna Bardella Gomes**
+- **RM566059 — Erick Takeshi Andrade Nakajune**
+- Grupo: DimDim. Domínio financeiro: usuários e transações. SGBD: SQL Server / Azure SQL.
+- Repositório: https://github.com/nanabardella/CP-DevOps
 
-## Tecnologias e arquitetura
+Esta evolução mantém CRUD, migrations e telemetria da entrega Azure. A listagem de **transações** ganhou dois contratos. A v1 permanece array e está deprecada; a v2 retorna uma página com totais. Os dois contratos usam o mesmo `TransacaoService`.
 
-.NET 9, ASP.NET Core Controllers, EF Core 9.0.10, SQL Server/Azure SQL, Swagger (Swashbuckle), OpenAPI, Application Insights e PowerShell/Azure CLI.
-Controllers recebem DTOs validados e usam AppDbContext para persistir entidades. DTOs de resposta evitam ciclos JSON.
-Usuario **1:N** Transacao: Usuario.Id é PK; Transacao.UsuarioId é FK com exclusão em cascata. Email possui índice UNIQUE; Valor é decimal(18,2). As transações retornam também nome/email do usuário.
+## Executar
 
-```text
-DimDim.Api/
-  Controllers/       CRUDs
-  Data/              AppDbContext
-  DTOs/              Contratos e validações
-  Models/            Usuario e Transacao
-  Migrations/        InitialCreate e snapshot
-  Program.cs         Serviços, Swagger e telemetria
-azure/               deploy-azure.ps1
-database/            ddl.sql e verify-persistence.sql
-postman/             Coleção de testes
-evidencias/          Roteiro de capturas reais
-DimDim.sln
-```
-
-## Pré-requisitos
-
-Instale SDK .NET 9, Git, VS Code (extensão C#) e Azure CLI. Para o banco local, SQL Server ou LocalDB instalado separadamente; para a apresentação, Azure SQL e assinatura com permissão de criação. Não há banco em memória.
-Execute os comandos abaixo em PowerShell na raiz do repositório:
+Pré-requisitos: SDK .NET 9, banco SQL Server ou Azure SQL. Na raiz, em PowerShell:
 
 ```powershell
-dotnet --version
-az version
-git --version
 dotnet restore
 dotnet build
-# Apenas se dotnet-ef ainda não estiver instalado:
-dotnet tool install --global dotnet-ef --version 9.0.10
-dotnet ef --version
-```
-
-## Execução local e configuração segura
-
-appsettings.json possui conexão vazia. A API inicia sem SQL; /health e documentação funcionam, enquanto /api retorna 503 sem tentar conexão.
-Configure a conexão exclusivamente em variável de ambiente. Não cole senha em comando salvo, arquivo versionado ou conversa.
-LocalDB opcional (se instalado):
-
-```powershell
-$env:ConnectionStrings__DefaultConnection = 'Server=(localdb)\MSSQLLocalDB;Database=DimDimLocal;Trusted_Connection=True;TrustServerCertificate=True'
-# Somente para esse banco LOCAL:
-dotnet ef database update --project .\DimDim.Api --startup-project .\DimDim.Api
+# Informe a conexão somente em variável de ambiente, sem salvar credenciais no Git:
+$env:ConnectionStrings__DefaultConnection = 'SUA_CONEXAO_SQL'
+dotnet tool install --global dotnet-ef --version 9.0.10 # apenas se não estiver instalado
+dotnet ef database update --project DimDim.Api --startup-project DimDim.Api
 $env:ASPNETCORE_ENVIRONMENT = 'Development'
-dotnet run --project .\DimDim.Api --no-launch-profile --urls http://localhost:5000
+dotnet run --project DimDim.Api --no-launch-profile --urls http://localhost:5000
 ```
 
-Abra http://localhost:5000/swagger; OpenAPI nativo em /openapi/v1.json e Swagger JSON em /swagger/v1/swagger.json.
-GET /health é verificação da aplicação, sem comprovar disponibilidade do banco.
+A migration inicial existente é preservada. Para LocalDB, se instalado, use `Server=(localdb)\MSSQLLocalDB;Database=DimDimLocal;Trusted_Connection=True;TrustServerCertificate=True`. O SQL não é substituído por banco em memória na aplicação.
 
-Para Azure SQL, após criar/autorizar infraestrutura, leia a conexão sem exibi-la nem salvá-la:
+| Recurso | Local | Azure |
+| --- | --- | --- |
+| Swagger | http://localhost:5000/swagger | https://dimdim-api-561439-nb261001.azurewebsites.net/swagger |
+| Health | http://localhost:5000/health | https://dimdim-api-561439-nb261001.azurewebsites.net/health |
+| Lista v1 | http://localhost:5000/api/transacoes?api-version=1.0 | https://dimdim-api-561439-nb261001.azurewebsites.net/api/transacoes?api-version=1.0 |
+| Lista v2 | http://localhost:5000/api/transacoes?api-version=2.0&page=1&pageSize=2 | https://dimdim-api-561439-nb261001.azurewebsites.net/api/transacoes?api-version=2.0&page=1&pageSize=2 |
 
-```powershell
-$connectionSecret = Read-Host 'Cole a connection string Azure SQL completa' -AsSecureString
-$connectionPtr = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($connectionSecret)
-try {
-    $env:ConnectionStrings__DefaultConnection = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($connectionPtr)
-} finally {
-    [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($connectionPtr)
-    $connectionSecret = $null
-}
-# Execute SOMENTE após autorização para aplicar no Azure:
-dotnet ef database update --project .\DimDim.Api --startup-project .\DimDim.Api
-# Ao terminar os testes:
-Remove-Item Env:\ConnectionStrings__DefaultConnection
+`/health` verifica acesso ao banco: 200 com `database: reachable`, ou 503 se indisponível. Sem configuração SQL, Swagger continua acessível e o CRUD responde 503.
+
+## Selecionar versão
+
+Os três modos funcionam na rota `/api/transacoes`:
+
+```http
+GET /api/transacoes?api-version=1.0
 ```
 
-Formato esperado: Server=tcp:SERVIDOR.database.windows.net,1433;Initial Catalog=dimdim-db;User ID=ADMIN;Password=SENHA;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
-Construa a string com SqlConnectionStringBuilder se a senha tiver caracteres especiais.
-
-## Migrations e DDL
-
-InitialCreate já está criada. Não recrie a migration inicial.
-Após mudanças futuras no modelo:
-
-```powershell
-dotnet ef migrations add NomeDaAlteracao --project .\DimDim.Api --startup-project .\DimDim.Api
-dotnet build
-dotnet ef migrations list --project .\DimDim.Api --startup-project .\DimDim.Api --no-connect
-dotnet ef migrations script 0 InitialCreate --project .\DimDim.Api --output .\database\ddl.sql
+```http
+GET /api/transacoes
+X-Api-Version: 1.0
 ```
 
-database/ddl.sql foi gerado pelo EF e inclui tabelas, PKs, FK cascade, índice UNIQUE e histórico de migrations.
-Use database update para implantação; o DDL é uma alternativa/evidência. Não execute ambos indiscriminadamente. O DDL inicial destina-se a um banco novo.
-
-## Azure: revisar antes de criar
-
-O script foi executado com autorização em 1 de outubro de 2026; veja [o registro da implantação](evidencias/EXECUCAO-AZURE.md). SQL Basic, App Service B1 e monitoramento podem gerar cobrança/consumir créditos.
-Não assume Brazil South e não altera a assinatura.
-Confira a assinatura e as políticas herdadas (inclusive management groups) no Portal/Azure Policy; listar regiões não comprova que uma região seja permitida:
-
-```powershell
-az account show --query "{name:name,id:id,tenantId:tenantId}" -o table
-az account list-locations --query "[].{name:name,displayName:displayName}" -o table
-az policy assignment list --disable-scope-strict-match -o json
-az webapp list-runtimes --os linux -o table
-az extension add --name application-insights
+```http
+GET /api/transacoes
 ```
 
-Defina LOCATION como uma região permitida para **todos** os serviços e disponível para sua assinatura. Confira disponibilidade das SKUs SQL Basic e App Service B1 nessa região. Se .NET 9 não estiver disponível no App Service, pare e revise a estratégia de runtime antes de criar recursos.
-Os nomes SQL Server/Web App precisam ser globalmente únicos; acrescente um sufixo se necessário. Informe seu IPv4 público atual (VPN/proxy pode mudar o IP).
+Omissão usa **2.0**. Query `api-version` e header `X-Api-Version` são os leitores habilitados; não há leitor por segmento URL. Para v2 explícita, use `2.0` em qualquer leitor. As respostas informam `api-supported-versions: 2.0` e `api-deprecated-versions: 1.0`. No Swagger há documentos `v1.0` (DEPRECADA) e `v2.0`, com seletor na UI. Em produção o Swagger depende de `Swagger__Enabled=true`, habilitado no deploy didático.
 
-### Comando de criação, somente após autorização
+`GET /api/usuarios` e o CRUD de usuários são `ApiVersionNeutral`, aparecem nos dois documentos e permanecem chamáveis sem versão. GET por ID, POST, PUT e DELETE de transações estão disponíveis em **ambas** as versões; sem versão usam 2.0. O contrato de escrita permanece igual.
 
-```powershell
-$LOCATION = 'REGIAO_PERMITIDA'
-.\azure\deploy-azure.ps1 -Stage Provision -LOCATION $LOCATION -SqlServer 'dimdim-sql-561439-SUFIXO' -WebApp '561439-dimdim-api-SUFIXO' -DevelopmentIp 'SEU_IPV4_PUBLICO' -EnableSwagger
-```
+## Paginação v2
 
-O script contém os comandos completos: az group create, az sql server create, az sql db create, az sql server firewall-rule create, az appservice plan create, az webapp create, az webapp update, az monitor log-analytics workspace create, az monitor app-insights component create, az webapp config connection-string set e az webapp config appsettings set.
+- `page`: padrão 1, inteiro >= 1.
+- `pageSize`: padrão 20, inteiro de 1 a 100. Fora da faixa responde **400**, sem ajuste silencioso.
+- Página além do total responde **200** com `items: []`, inclusive `page=2147483647`.
+- `totalPages = Ceiling(totalItems / pageSize)`; sem itens, 0 páginas.
+- Envelope: `page`, `pageSize`, `totalItems`, `totalPages`, `items`, `hasPrevious`, `hasNext`.
+- A v1 ignora parâmetros de paginação e continua retornando a lista inteira.
 
-A senha é solicitada com Read-Host -AsSecureString e usada apenas em memória/processo CLI; não use --debug nem transcrição durante essa execução.
-A conexão fica no App Service como SQLAzure com nome DefaultConnection, lida pelo ASP.NET Core.
-Firewall permite o IP de desenvolvimento e os possibleOutboundIpAddresses do App Service, sem liberar todos os IPs. Mudanças no plano/infraestrutura podem exigir atualizar essas regras.
-Falhas interrompem o script, mas recursos já criados permanecem. Revise o grupo no Portal antes de repetir. Não há exclusão automática.
-
-Aplique a migration manualmente com o comando da seção anterior, após autorização, usando o SQL Server/nome/admin escolhidos e o firewall configurado.
-
-### Deploy, somente após autorização e migration
-
-```powershell
-.\azure\deploy-azure.ps1 -Stage Deploy -LOCATION $LOCATION -WebApp '561439-dimdim-api-SUFIXO'
-```
-
-O script executa dotnet publish em Release, cria ZIP e usa az webapp deploy.
-Acesse https://NOME.azurewebsites.net/health e /swagger. Para habilitar Swagger após a criação:
-
-```powershell
-az webapp config appsettings set -g 561439-dimdim-rg -n NOME_WEBAPP --settings Swagger__Enabled=true -o none
-```
-
-A API deste checkpoint não possui autenticação: use dados fictícios e habilite Swagger para a apresentação. Para encerrar a exposição da documentação, configure Swagger__Enabled=false; os endpoints CRUD continuam públicos.
-
-## CRUD e Postman
-
-Importe postman/DimDim.postman_collection.json. baseUrl começa em http://localhost:5000; altere para https://NOME.azurewebsites.net no Azure.
-Execute a coleção em ordem: os POSTs guardam usuarioId/transacaoId automaticamente. As exclusões estão no final.
-POST repetido com o mesmo email retorna 409; altere o email ou conclua a exclusão antes de repetir.
-
-| Método | Rota | Resultado |
-|---|---|---|
-| GET | /api/usuarios e /api/transacoes | 200 com lista |
-| GET | /api/usuarios/{id} e /api/transacoes/{id} | 200 ou 404 |
-| POST | /api/usuarios e /api/transacoes | 201 com Location e corpo |
-| PUT | /api/usuarios/{id} e /api/transacoes/{id} | 204 ou 404 |
-| DELETE | /api/usuarios/{id} e /api/transacoes/{id} | 204 ou 404 |
-
-Validação inválida retorna 400. UsuarioId inexistente retorna 400 com mensagem. Email duplicado retorna 409.
-Nome/email/descrição são obrigatórios, com limites 100/150/200; email deve ter formato válido, valor até duas casas, data informada e UsuarioId positivo.
-Exemplos de corpos:
+Exemplo ilustrativo de v2 (os totais reais estão em `docs/`):
 
 ```json
-{"nome":"Giovanna","email":"giovanna@email.com"}
+{"page":1,"pageSize":2,"totalItems":5,"totalPages":3,"items":[],"hasPrevious":false,"hasNext":true}
 ```
+
+`PageRequest` em Application valida a faixa. O repositório Infrastructure executa `CountAsync`, `OrderBy(Id)`, `Skip`, `Take` no `IQueryable` antes de `ToListAsync`. `GetById` não pagina. Um offset longo evita overflow; páginas além do total não materializam linhas. Não há `GetAll` seguido de paginação em memória.
+
+## Rate limit
+
+**POST `/api/transacoes`**, em ambas as versões: política nomeada `escrita`, **fixed window de 10 requisições a cada 60 segundos**, fila 0, compartilhada por processo da API. O teto considera chamadas ao endpoint inclusive as que falham na validação; não é por usuário/IP nem distribuído entre instâncias.
+
+A 11ª tentativa na mesma janela responde **429**, `Retry-After` em segundos e JSON Problem Details com `status: 429` e `traceId`. `UseRateLimiter` vem depois de `UseExceptionHandler` e antes de `MapControllers`. GETs, PUTs, DELETEs e o CRUD de usuários não recebem esta política. `/health` tem `DisableRateLimiting`: continua 200 com banco acessível após o teto do POST.
+
+Para testar manualmente no Swagger, crie um usuário e repita POST de transação com seu ID até o 429. Depois chame `/health` e aguarde o tempo de `Retry-After` para novo POST. O teto não interfere no teste das páginas GET.
+
+## Arquitetura
+
+```text
+DimDim.Api             Controllers, versões, Swagger, middleware, migrations existentes
+      ↓
+DimDim.Application     DTOs, serviços compartilhados, PageRequest, envelope, IRepository<T>
+      ↓
+DimDim.Domain          Usuario, Transacao, regra de precisão monetária, exceções
+DimDim.Infrastructure  AppDbContext, EF Core, repositório, consulta paginada SQL
+```
+
+A API é a composição e referencia Infrastructure para injetar implementações. Application e Domain não dependem da API nem de EF Core. Controllers não acessam `DbContext`. Os namespaces legados `DimDim.Api.Models`, `DimDim.Api.DTOs` e `DimDim.Api.Data` foram preservados nos arquivos movidos para manter compatibilidade com o snapshot e código existente; a dependência entre projetos é definida pelos `.csproj`, sem referência inversa à API.
+
+O ponto de partida desta evolução era a API Azure, sem projetos de testes ou camadas separadas. Foram adicionados Domain/Application/Infrastructure e seus testes sem alegar que já existiam na entrega anterior. A migration `20261001224624_InitialCreate` e as evidências antigas permanecem preservadas.
+
+## Contratos de escrita e exceções
+
+POST de usuário:
 
 ```json
-{"descricao":"Pagamento faculdade","valor":1500.00,"data":"2026-10-01T19:00:00","usuarioId":1}
+{"nome":"Demo CP5","email":"demo-cp5@example.com"}
 ```
 
-Use os IDs reais retornados pelo POST. PUT recebe os mesmos campos, sem Id no corpo.
+POST de transação (troque o ID pelo retornado):
 
-## Persistência e evidências
-
-No Azure SQL Database, abra Query Editor, autentique e execute database/verify-persistence.sql.
-Compare IDs e valores após POST/PUT e ausência após DELETE. Reinicie a API e consulte novamente para provar persistência.
-Excluir um usuário remove todas as suas transações. Siga evidencias/README.md para capturas antes das exclusões.
-**Os recursos foram recriados em 3 de outubro de 2026; CRUD e persistência após reinício foram revalidados no Azure.** Resultados reais em `evidencias/azure-crud.json`. As capturas em `evidencias/prints-2026-10-03` comprovam requests e dependências SQL no novo Application Insights; o JSON de telemetria preserva a consulta anterior vazia. As evidências da execução original, incluindo telemetria, estão em `evidencias/historico-2026-10-01`. O relatório está em [DimDim_webapp.pdf](evidencias/DimDim_webapp.pdf), com 21 capturas selecionadas.
-
-## Application Insights
-
-A aplicação só registra telemetria quando APPLICATIONINSIGHTS_CONNECTION_STRING ou ApplicationInsights:ConnectionString está configurada.
-Local sem configuração funciona normalmente. O script configura a variável no Web App; não é necessário ativar outro agente de instrumentação.
-Após chamar endpoints, abra o recurso Application Insights: Live Metrics, Failures, Performance e Logs. A ingestão pode levar alguns minutos.
-Em Logs no escopo do Application Insights:
-
-```kusto
-requests
-| where timestamp > ago(30m)
-| project timestamp, name, resultCode, success, duration
-| order by timestamp desc
+```json
+{"descricao":"Compra","valor":25.50,"data":"2026-10-20T12:00:00","usuarioId":1}
 ```
 
-```kusto
-dependencies
-| where timestamp > ago(30m)
-| where type == "SQL"
-| project timestamp, name, success, duration
-```
+GET por ID: `/api/usuarios/{id}` e `/api/transacoes/{id}`. PUT recebe os mesmos campos do POST; DELETE usa o ID. POST retorna 201 com `Location`; PUT/DELETE retornam 204. Email é único, PK/FK e cascade permanecem no SQL.
 
-## GitHub e segurança
+| Situação / exceção | HTTP | Resposta |
+| --- | --- | --- |
+| DTO inválido / ArgumentException (página) / DomainException | 400 | Problem Details com regra e traceId |
+| ResourceNotFoundException | 404 | Problem Details |
+| ConflictException (email duplicado, SQL 2601/2627) | 409 | Problem Details |
+| SQL FK 547 | 400 | DomainException: usuário não existe mais |
+| Política de taxa excedida | 429 | Problem Details + Retry-After |
+| Conexão não configurada / health sem banco | 503 | Problem Details |
+| Exceção inesperada | 500 | Mensagem genérica e traceId; detalhes somente nos logs |
 
-.gitignore exclui bin, obj, .vs, configurações locais, .env, credenciais e artifacts.
-Não versionar senhas, connection strings reais, publish profiles ou capturas com secrets. User Secrets também não são criptografados.
-Revise os arquivos antes de adicionar ao Git. O commit `f3f16db` foi confirmado no GitHub; a implantação está publicada, mas as alterações e evidências desta execução ainda precisam de commit/push.
-Se ainda não houver repositório, estes comandos são manuais:
+`GlobalExceptionHandler` registra exceções com `traceId`. Requisições também registram método, caminho e status. O SDK Application Insights é ativado quando sua conexão está configurada.
+
+## Testes e evidências
 
 ```powershell
-git init
-git status --short
-git add .
-git diff --cached
-git commit -m "Implementa checkpoint DimDim API e preparação Azure"
-# Configure remote e faça push somente após sua revisão/autorização.
+dotnet test DimDim.sln
+# Teste real contra o Azure, com dados fictícios:
+powershell -NoProfile -ExecutionPolicy Bypass -File azure/verify-cp5.ps1
 ```
 
-## Referências
+- `DimDim.Domain.Tests`: precisão e limites monetários.
+- `DimDim.Application.Tests`: intervalos de página, totais, overflow, validação antes do repositório e usuário ausente. Sem API ou banco.
+- `DimDim.Api.Tests`: contratos HTTP, query/header/default, Swagger, páginas sem sobreposição, erros, rate limit/health e CRUD/cascade. Usa SQLite relacional isolado somente nos testes.
+- [docs/README.md](docs/README.md): índice da execução real no Azure e evidências exigidas.
+- [docs/dotnet-test.txt](docs/dotnet-test.txt): saída real de `dotnet test`.
+- [database/ddl.sql](database/ddl.sql), [Postman](postman/DimDim.postman_collection.json) e [deploy Azure](azure/deploy-azure.ps1).
 
-- [ASP.NET Core no Azure App Service](https://learn.microsoft.com/en-gb/azure/app-service/configure-language-dotnetcore)
-- [Application Insights e workspace](https://learn.microsoft.com/en-us/azure/azure-monitor/app/create-workspace-resource)
-- [SDK Application Insights ASP.NET Core](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/NETCORE/Readme.md)
+O script CP5 cria dados demonstrativos e mantém cinco transações para apresentação; remove apenas as transações adicionais criadas pelo teste do teto. Repetir o script cria outro usuário: os totais globais podem mudar. O Postman antigo de CRUD foi preservado; para lista antiga acrescente `?api-version=1.0`, para paginação use a v2.
+
+## Azure e entrega
+
+Grupo `561439-dimdim-rg`, Mexico Central, SQL Basic, App Service Linux B1, Application Insights e workspace. Custos permanecem enquanto provisionados. O script destrutivo `azure/rebuild-cp5.ps1` só deve ser executado quando a recriação do grupo e seus dados estiver autorizada; não é necessário para rodar localmente nem para avaliar CP5.
+
+O PDF em `evidencias/DimDim_webapp.pdf` documenta a entrega Azure anterior. **A entrega CP5 é o link deste repositório público no portal do aluno**, feita por um integrante. Para remover recursos após avaliação, consulte [o roteiro](azure/REMOVER-APOS-ENTREGA.md).
+
+Referências técnicas: [ASP.NET API Versioning](https://github.com/dotnet/aspnet-api-versioning), [rate limit nativo](https://learn.microsoft.com/aspnet/core/performance/rate-limit?view=aspnetcore-9.0).

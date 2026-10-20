@@ -1,0 +1,73 @@
+{
+    "executedAtUtc":  "2026-10-20T19:29:47.7395619Z",
+    "requests":  {
+                     "tables":  [
+                                    {
+                                        "columns":  [
+                                                        {
+                                                            "name":  "resultCode",
+                                                            "type":  "string"
+                                                        },
+                                                        {
+                                                            "name":  "total",
+                                                            "type":  "long"
+                                                        }
+                                                    ],
+                                        "name":  "PrimaryResult",
+                                        "rows":  [
+                                                     [
+                                                         "200",
+                                                         21
+                                                     ],
+                                                     [
+                                                         "201",
+                                                         12
+                                                     ],
+                                                     [
+                                                         "204",
+                                                         7
+                                                     ],
+                                                     [
+                                                         "301",
+                                                         1
+                                                     ],
+                                                     [
+                                                         "400",
+                                                         2
+                                                     ],
+                                                     [
+                                                         "429",
+                                                         1
+                                                     ],
+                                                     [
+                                                         "404",
+                                                         1
+                                                     ]
+                                                 ]
+                                    }
+                                ]
+                 },
+    "sqlDependencies":  {
+                            "tables":  [
+                                           {
+                                               "columns":  [
+                                                               {
+                                                                   "name":  "success",
+                                                                   "type":  "string"
+                                                               },
+                                                               {
+                                                                   "name":  "total",
+                                                                   "type":  "long"
+                                                               }
+                                                           ],
+                                               "name":  "PrimaryResult",
+                                               "rows":  [
+                                                            [
+                                                                "True",
+                                                                55
+                                                            ]
+                                                        ]
+                                           }
+                                       ]
+                        }
+}

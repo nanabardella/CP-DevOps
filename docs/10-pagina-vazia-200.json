@@ -1,0 +1,31 @@
+{
+    "name":  "10-pagina-vazia-200",
+    "executedAtUtc":  "2026-10-20T19:28:18.7875553Z",
+    "method":  "GET",
+    "url":  "https://dimdim-api-561439-nb261001.azurewebsites.net/api/transacoes?page=2147483647\u0026pageSize=100",
+    "requestHeaders":  {
+
+                       },
+    "status":  200,
+    "headers":  {
+                    "Transfer-Encoding":  "chunked",
+                    "Request-Context":  "appId=cid-v1:34294f73-c161-45bb-85d0-ab114555cf4e",
+                    "api-supported-versions":  "2.0",
+                    "api-deprecated-versions":  "1.0",
+                    "Date":  "Tue, 20 Oct 2026 19:28:13 GMT",
+                    "Server":  "Kestrel",
+                    "Content-Type":  "application/json; charset=utf-8"
+                },
+    "body":  {
+                 "page":  2147483647,
+                 "pageSize":  100,
+                 "totalItems":  5,
+                 "totalPages":  1,
+                 "items":  [
+
+                           ],
+                 "hasPrevious":  true,
+                 "hasNext":  false
+             },
+    "rawBody":  "{\"page\":2147483647,\"pageSize\":100,\"totalItems\":5,\"totalPages\":1,\"items\":[],\"hasPrevious\":true,\"hasNext\":false}"
+}

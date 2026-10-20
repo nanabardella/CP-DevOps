@@ -1,0 +1,691 @@
+  Determinando os projetos a serem restaurados...
+  Todos os projetos estão atualizados para restauração.
+  DimDim.Domain -> C:\Users\nanab\DimDim-Cloud\DimDim.Domain\bin\Debug\net9.0\DimDim.Domain.dll
+  DimDim.Domain.Tests -> C:\Users\nanab\DimDim-Cloud\DimDim.Domain.Tests\bin\Debug\net9.0\DimDim.Domain.Tests.dll
+Execução de teste para C:\Users\nanab\DimDim-Cloud\DimDim.Domain.Tests\bin\Debug\net9.0\DimDim.Domain.Tests.dll (.NETCoreApp,Version=v9.0)
+Versão do VSTest 17.14.1 (x64)
+
+  DimDim.Application -> C:\Users\nanab\DimDim-Cloud\DimDim.Application\bin\Debug\net9.0\DimDim.Application.dll
+Iniciando execução de teste, espere...
+1 arquivos de teste no total corresponderam ao padrão especificado.
+  DimDim.Application.Tests -> C:\Users\nanab\DimDim-Cloud\DimDim.Application.Tests\bin\Debug\net9.0\DimDim.Application.Tests.dll
+Execução de teste para C:\Users\nanab\DimDim-Cloud\DimDim.Application.Tests\bin\Debug\net9.0\DimDim.Application.Tests.dll (.NETCoreApp,Version=v9.0)
+  DimDim.Infrastructure -> C:\Users\nanab\DimDim-Cloud\DimDim.Infrastructure\bin\Debug\net9.0\DimDim.Infrastructure.dll
+Versão do VSTest 17.14.1 (x64)
+
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.8.2+699d445a1a (64-bit .NET 9.0.20)
+Iniciando execução de teste, espere...
+[xUnit.net 00:00:00.23]   Discovering: DimDim.Domain.Tests
+1 arquivos de teste no total corresponderam ao padrão especificado.
+[xUnit.net 00:00:00.37]   Discovered:  DimDim.Domain.Tests
+[xUnit.net 00:00:00.38]   Starting:    DimDim.Domain.Tests
+[xUnit.net 00:00:00.65]   Finished:    DimDim.Domain.Tests
+  Aprovado MoneyRulesTests.ValidatesSqlMoneyPrecision(input: "0.001", expected: False) [139 ms]
+  Aprovado MoneyRulesTests.ValidatesSqlMoneyPrecision(input: "10000000000000000", expected: False) [< 1 ms]
+  Aprovado MoneyRulesTests.ValidatesSqlMoneyPrecision(input: "9999999999999999.99", expected: True) [< 1 ms]
+  Aprovado MoneyRulesTests.ValidatesSqlMoneyPrecision(input: "0", expected: True) [< 1 ms]
+  Aprovado MoneyRulesTests.ValidatesSqlMoneyPrecision(input: "-10.25", expected: True) [< 1 ms]
+
+Execução de Teste Bem-sucedida.
+Total de testes: 5
+     Aprovados: 5
+Tempo total: 2,7220 Segundos
+Arquivo de resultados: C:\Users\nanab\DimDim-Cloud\artifacts\test-results\cp5-final_net9.0_20261020162031.trx
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.8.2+699d445a1a (64-bit .NET 9.0.20)
+  DimDim.Api -> C:\Users\nanab\DimDim-Cloud\DimDim.Api\bin\Debug\net9.0\DimDim.Api.dll
+[xUnit.net 00:00:00.31]   Discovering: DimDim.Application.Tests
+[xUnit.net 00:00:00.41]   Discovered:  DimDim.Application.Tests
+[xUnit.net 00:00:00.42]   Starting:    DimDim.Application.Tests
+  Aprovado PaginationTests.RejectsInvalidRange(page: -1, size: 20) [7 ms]
+  Aprovado PaginationTests.RejectsInvalidRange(page: 1, size: 9999) [< 1 ms]
+  Aprovado PaginationTests.RejectsInvalidRange(page: 1, size: 101) [< 1 ms]
+  Aprovado PaginationTests.RejectsInvalidRange(page: 1, size: 0) [< 1 ms]
+  Aprovado PaginationTests.RejectsInvalidRange(page: 0, size: 20) [< 1 ms]
+  Aprovado PaginationTests.MissingUserIsNotFound [5 ms]
+  Aprovado PaginationTests.RoundsTotalPagesUp [6 ms]
+  Aprovado PaginationTests.UsesDefaults [< 1 ms]
+  Aprovado PaginationTests.LargePageDoesNotOverflow [2 ms]
+[xUnit.net 00:00:00.61]   Finished:    DimDim.Application.Tests
+  Aprovado PaginationTests.ServiceRejectsBeforeAccessingDatabase [1 ms]
+
+Execução de Teste Bem-sucedida.
+Total de testes: 10
+     Aprovados: 10
+Tempo total: 1,9143 Segundos
+Arquivo de resultados: C:\Users\nanab\DimDim-Cloud\artifacts\test-results\cp5-final_net9.0_20261020162033.trx
+  DimDim.Api.Tests -> C:\Users\nanab\DimDim-Cloud\DimDim.Api.Tests\bin\Debug\net9.0\DimDim.Api.Tests.dll
+Execução de teste para C:\Users\nanab\DimDim-Cloud\DimDim.Api.Tests\bin\Debug\net9.0\DimDim.Api.Tests.dll (.NETCoreApp,Version=v9.0)
+Versão do VSTest 17.14.1 (x64)
+
+Iniciando execução de teste, espere...
+1 arquivos de teste no total corresponderam ao padrão especificado.
+[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.8.2+699d445a1a (64-bit .NET 9.0.20)
+[xUnit.net 00:00:00.24]   Discovering: DimDim.Api.Tests
+[xUnit.net 00:00:00.30]   Discovered:  DimDim.Api.Tests
+[xUnit.net 00:00:00.30]   Starting:    DimDim.Api.Tests
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (20ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Usuarios" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Usuarios" PRIMARY KEY AUTOINCREMENT,
+          "Nome" TEXT NOT NULL,
+          "Email" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Transacoes" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Transacoes" PRIMARY KEY AUTOINCREMENT,
+          "Descricao" TEXT NOT NULL,
+          "Valor" TEXT NOT NULL,
+          "Data" TEXT NOT NULL,
+          "UsuarioId" INTEGER NOT NULL,
+          CONSTRAINT "FK_Transacoes_Usuarios_UsuarioId" FOREIGN KEY ("UsuarioId") REFERENCES "Usuarios" ("Id") ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Transacoes_UsuarioId" ON "Transacoes" ("UsuarioId");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "IX_Usuarios_Email" ON "Usuarios" ("Email");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@p0='?' (Size = 17), @p1='?' (Size = 5)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Usuarios" ("Email", "Nome")
+      VALUES (@p0, @p1)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@p2='?' (DbType = DateTime), @p3='?' (Size = 8), @p4='?' (DbType = Int32), @p5='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p2, @p3, @p4, @p5)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 8), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 8), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 8), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 8), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "t"."Id", "t"."Data", "t"."Descricao", "t"."UsuarioId", "t"."Valor", "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Transacoes" AS "t"
+      INNER JOIN "Usuarios" AS "u" ON "t"."UsuarioId" = "u"."Id"
+      ORDER BY "t"."Id"
+info: DimDim.Api[0]
+      HTTP GET /api/transacoes => 200; traceId=0HNPERSSPBL75
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "t"."Id", "t"."Data", "t"."Descricao", "t"."UsuarioId", "t"."Valor", "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Transacoes" AS "t"
+      INNER JOIN "Usuarios" AS "u" ON "t"."UsuarioId" = "u"."Id"
+      ORDER BY "t"."Id"
+info: DimDim.Api[0]
+      HTTP GET /api/transacoes => 200; traceId=0HNPERSSPBL76
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM "Transacoes" AS "t"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "t0"."Id", "t0"."Data", "t0"."Descricao", "t0"."UsuarioId", "t0"."Valor", "u"."Id", "u"."Email", "u"."Nome"
+      FROM (
+          SELECT "t"."Id", "t"."Data", "t"."Descricao", "t"."UsuarioId", "t"."Valor"
+          FROM "Transacoes" AS "t"
+          ORDER BY "t"."Id"
+          LIMIT @__p_1 OFFSET @__p_0
+      ) AS "t0"
+      INNER JOIN "Usuarios" AS "u" ON "t0"."UsuarioId" = "u"."Id"
+      ORDER BY "t0"."Id"
+info: DimDim.Api[0]
+      HTTP GET /api/transacoes => 200; traceId=0HNPERSSPBL77
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM "Transacoes" AS "t"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "t0"."Id", "t0"."Data", "t0"."Descricao", "t0"."UsuarioId", "t0"."Valor", "u"."Id", "u"."Email", "u"."Nome"
+      FROM (
+          SELECT "t"."Id", "t"."Data", "t"."Descricao", "t"."UsuarioId", "t"."Valor"
+          FROM "Transacoes" AS "t"
+          ORDER BY "t"."Id"
+          LIMIT @__p_0 OFFSET @__p_0
+      ) AS "t0"
+      INNER JOIN "Usuarios" AS "u" ON "t0"."UsuarioId" = "u"."Id"
+      ORDER BY "t0"."Id"
+info: DimDim.Api[0]
+      HTTP GET /api/transacoes => 200; traceId=0HNPERSSPBL78
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM "Transacoes" AS "t"
+info: DimDim.Api[0]
+      HTTP GET /api/transacoes => 200; traceId=0HNPERSSPBL79
+fail: Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+      System.ArgumentException: page deve ser um inteiro maior ou igual a 1.
+         at DimDim.Application.PageRequest..ctor(Int32 page, Int32 pageSize) in C:\Users\nanab\DimDim-Cloud\DimDim.Application\Pagination.cs:line 9
+         at DimDim.Application.TransacaoService.GetPaged(Int32 page, Int32 pageSize, CancellationToken ct) in C:\Users\nanab\DimDim-Cloud\DimDim.Application\Services.cs:line 28
+         at DimDim.Api.Controllers.TransacoesController.GetV2(CancellationToken ct, Int32 page, Int32 pageSize) in C:\Users\nanab\DimDim-Cloud\DimDim.Api\Controllers\TransacoesController.cs:line 14
+         at lambda_method215(Closure, Object)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+      --- End of stack trace from previous location ---
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Program.<>c__DisplayClass0_0.<<<Main>$>b__7>d.MoveNext() in C:\Users\nanab\DimDim-Cloud\DimDim.Api\Program.cs:line 46
+      --- End of stack trace from previous location ---
+         at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+         at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+         at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+fail: DimDim.Api.GlobalExceptionHandler[0]
+      Falha HTTP 400; traceId=0HNPERSSPBL7A
+      System.ArgumentException: page deve ser um inteiro maior ou igual a 1.
+         at DimDim.Application.PageRequest..ctor(Int32 page, Int32 pageSize) in C:\Users\nanab\DimDim-Cloud\DimDim.Application\Pagination.cs:line 9
+         at DimDim.Application.TransacaoService.GetPaged(Int32 page, Int32 pageSize, CancellationToken ct) in C:\Users\nanab\DimDim-Cloud\DimDim.Application\Services.cs:line 28
+         at DimDim.Api.Controllers.TransacoesController.GetV2(CancellationToken ct, Int32 page, Int32 pageSize) in C:\Users\nanab\DimDim-Cloud\DimDim.Api\Controllers\TransacoesController.cs:line 14
+         at lambda_method215(Closure, Object)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+      --- End of stack trace from previous location ---
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Program.<>c__DisplayClass0_0.<<<Main>$>b__7>d.MoveNext() in C:\Users\nanab\DimDim-Cloud\DimDim.Api\Program.cs:line 46
+      --- End of stack trace from previous location ---
+         at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+         at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+         at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+fail: Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+      System.ArgumentException: pageSize deve estar entre 1 e 100.
+         at DimDim.Application.PageRequest..ctor(Int32 page, Int32 pageSize) in C:\Users\nanab\DimDim-Cloud\DimDim.Application\Pagination.cs:line 10
+         at DimDim.Application.TransacaoService.GetPaged(Int32 page, Int32 pageSize, CancellationToken ct) in C:\Users\nanab\DimDim-Cloud\DimDim.Application\Services.cs:line 28
+         at DimDim.Api.Controllers.TransacoesController.GetV2(CancellationToken ct, Int32 page, Int32 pageSize) in C:\Users\nanab\DimDim-Cloud\DimDim.Api\Controllers\TransacoesController.cs:line 14
+         at lambda_method215(Closure, Object)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+      --- End of stack trace from previous location ---
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Program.<>c__DisplayClass0_0.<<<Main>$>b__7>d.MoveNext() in C:\Users\nanab\DimDim-Cloud\DimDim.Api\Program.cs:line 46
+      --- End of stack trace from previous location ---
+         at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+         at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+         at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+fail: DimDim.Api.GlobalExceptionHandler[0]
+      Falha HTTP 400; traceId=0HNPERSSPBL7B
+      System.ArgumentException: pageSize deve estar entre 1 e 100.
+         at DimDim.Application.PageRequest..ctor(Int32 page, Int32 pageSize) in C:\Users\nanab\DimDim-Cloud\DimDim.Application\Pagination.cs:line 10
+         at DimDim.Application.TransacaoService.GetPaged(Int32 page, Int32 pageSize, CancellationToken ct) in C:\Users\nanab\DimDim-Cloud\DimDim.Application\Services.cs:line 28
+         at DimDim.Api.Controllers.TransacoesController.GetV2(CancellationToken ct, Int32 page, Int32 pageSize) in C:\Users\nanab\DimDim-Cloud\DimDim.Api\Controllers\TransacoesController.cs:line 14
+         at lambda_method215(Closure, Object)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+      --- End of stack trace from previous location ---
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Program.<>c__DisplayClass0_0.<<<Main>$>b__7>d.MoveNext() in C:\Users\nanab\DimDim-Cloud\DimDim.Api\Program.cs:line 46
+      --- End of stack trace from previous location ---
+         at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+         at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+         at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+fail: Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+      System.ArgumentException: pageSize deve estar entre 1 e 100.
+         at DimDim.Application.PageRequest..ctor(Int32 page, Int32 pageSize) in C:\Users\nanab\DimDim-Cloud\DimDim.Application\Pagination.cs:line 10
+         at DimDim.Application.TransacaoService.GetPaged(Int32 page, Int32 pageSize, CancellationToken ct) in C:\Users\nanab\DimDim-Cloud\DimDim.Application\Services.cs:line 28
+         at DimDim.Api.Controllers.TransacoesController.GetV2(CancellationToken ct, Int32 page, Int32 pageSize) in C:\Users\nanab\DimDim-Cloud\DimDim.Api\Controllers\TransacoesController.cs:line 14
+         at lambda_method215(Closure, Object)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+      --- End of stack trace from previous location ---
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Program.<>c__DisplayClass0_0.<<<Main>$>b__7>d.MoveNext() in C:\Users\nanab\DimDim-Cloud\DimDim.Api\Program.cs:line 46
+      --- End of stack trace from previous location ---
+         at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+         at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+         at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+fail: DimDim.Api.GlobalExceptionHandler[0]
+      Falha HTTP 400; traceId=0HNPERSSPBL7C
+      System.ArgumentException: pageSize deve estar entre 1 e 100.
+         at DimDim.Application.PageRequest..ctor(Int32 page, Int32 pageSize) in C:\Users\nanab\DimDim-Cloud\DimDim.Application\Pagination.cs:line 10
+         at DimDim.Application.TransacaoService.GetPaged(Int32 page, Int32 pageSize, CancellationToken ct) in C:\Users\nanab\DimDim-Cloud\DimDim.Application\Services.cs:line 28
+         at DimDim.Api.Controllers.TransacoesController.GetV2(CancellationToken ct, Int32 page, Int32 pageSize) in C:\Users\nanab\DimDim-Cloud\DimDim.Api\Controllers\TransacoesController.cs:line 14
+         at lambda_method215(Closure, Object)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+      --- End of stack trace from previous location ---
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Program.<>c__DisplayClass0_0.<<<Main>$>b__7>d.MoveNext() in C:\Users\nanab\DimDim-Cloud\DimDim.Api\Program.cs:line 46
+      --- End of stack trace from previous location ---
+         at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+         at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+         at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Usuarios" AS "u"
+      ORDER BY "u"."Id"
+info: DimDim.Api[0]
+      HTTP GET /api/usuarios => 200; traceId=0HNPERSSPBL7D
+  Aprovado ContractTests.VersionsAndPaginationKeepContracts [4 s]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Usuarios" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Usuarios" PRIMARY KEY AUTOINCREMENT,
+          "Nome" TEXT NOT NULL,
+          "Email" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Transacoes" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Transacoes" PRIMARY KEY AUTOINCREMENT,
+          "Descricao" TEXT NOT NULL,
+          "Valor" TEXT NOT NULL,
+          "Data" TEXT NOT NULL,
+          "UsuarioId" INTEGER NOT NULL,
+          CONSTRAINT "FK_Transacoes_Usuarios_UsuarioId" FOREIGN KEY ("UsuarioId") REFERENCES "Usuarios" ("Id") ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Transacoes_UsuarioId" ON "Transacoes" ("UsuarioId");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "IX_Usuarios_Email" ON "Usuarios" ("Email");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 17), @p1='?' (Size = 5)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Usuarios" ("Email", "Nome")
+      VALUES (@p0, @p1)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p2='?' (DbType = DateTime), @p3='?' (Size = 8), @p4='?' (DbType = Int32), @p5='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p2, @p3, @p4, @p5)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 8), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 8), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 8), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 8), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Usuarios" AS "u"
+      WHERE "u"."Id" = @__id_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 4), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: DimDim.Api[0]
+      HTTP POST /api/transacoes => 201; traceId=0HNPERSSPBL7G
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Usuarios" AS "u"
+      WHERE "u"."Id" = @__id_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 4), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: DimDim.Api[0]
+      HTTP POST /api/transacoes => 201; traceId=0HNPERSSPBL7H
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Usuarios" AS "u"
+      WHERE "u"."Id" = @__id_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 4), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: DimDim.Api[0]
+      HTTP POST /api/transacoes => 201; traceId=0HNPERSSPBL7I
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Usuarios" AS "u"
+      WHERE "u"."Id" = @__id_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 4), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: DimDim.Api[0]
+      HTTP POST /api/transacoes => 201; traceId=0HNPERSSPBL7J
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Usuarios" AS "u"
+      WHERE "u"."Id" = @__id_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 4), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: DimDim.Api[0]
+      HTTP POST /api/transacoes => 201; traceId=0HNPERSSPBL7K
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Usuarios" AS "u"
+      WHERE "u"."Id" = @__id_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 4), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: DimDim.Api[0]
+      HTTP POST /api/transacoes => 201; traceId=0HNPERSSPBL7L
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Usuarios" AS "u"
+      WHERE "u"."Id" = @__id_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 4), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: DimDim.Api[0]
+      HTTP POST /api/transacoes => 201; traceId=0HNPERSSPBL7M
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Usuarios" AS "u"
+      WHERE "u"."Id" = @__id_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 4), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: DimDim.Api[0]
+      HTTP POST /api/transacoes => 201; traceId=0HNPERSSPBL7N
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Usuarios" AS "u"
+      WHERE "u"."Id" = @__id_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 4), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: DimDim.Api[0]
+      HTTP POST /api/transacoes => 201; traceId=0HNPERSSPBL7O
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Usuarios" AS "u"
+      WHERE "u"."Id" = @__id_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 4), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: DimDim.Api[0]
+      HTTP POST /api/transacoes => 201; traceId=0HNPERSSPBL7P
+info: DimDim.Api[0]
+      HTTP GET /health => 200; traceId=0HNPERSSPBL7R
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*)
+      FROM "Transacoes" AS "t"
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "t0"."Id", "t0"."Data", "t0"."Descricao", "t0"."UsuarioId", "t0"."Valor", "u"."Id", "u"."Email", "u"."Nome"
+      FROM (
+          SELECT "t"."Id", "t"."Data", "t"."Descricao", "t"."UsuarioId", "t"."Valor"
+          FROM "Transacoes" AS "t"
+          ORDER BY "t"."Id"
+          LIMIT @__p_1 OFFSET @__p_0
+      ) AS "t0"
+      INNER JOIN "Usuarios" AS "u" ON "t0"."UsuarioId" = "u"."Id"
+      ORDER BY "t0"."Id"
+info: DimDim.Api[0]
+      HTTP GET /api/transacoes => 200; traceId=0HNPERSSPBL7S
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Usuarios" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Usuarios" PRIMARY KEY AUTOINCREMENT,
+          "Nome" TEXT NOT NULL,
+          "Email" TEXT NOT NULL
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE "Transacoes" (
+          "Id" INTEGER NOT NULL CONSTRAINT "PK_Transacoes" PRIMARY KEY AUTOINCREMENT,
+          "Descricao" TEXT NOT NULL,
+          "Valor" TEXT NOT NULL,
+          "Data" TEXT NOT NULL,
+          "UsuarioId" INTEGER NOT NULL,
+          CONSTRAINT "FK_Transacoes_Usuarios_UsuarioId" FOREIGN KEY ("UsuarioId") REFERENCES "Usuarios" ("Id") ON DELETE CASCADE
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE INDEX "IX_Transacoes_UsuarioId" ON "Transacoes" ("UsuarioId");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE UNIQUE INDEX "IX_Usuarios_Email" ON "Usuarios" ("Email");
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 17), @p1='?' (Size = 5)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Usuarios" ("Email", "Nome")
+      VALUES (@p0, @p1)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p2='?' (DbType = DateTime), @p3='?' (Size = 8), @p4='?' (DbType = Int32), @p5='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p2, @p3, @p4, @p5)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 8), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 8), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 8), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 8), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 16), @p1='?' (Size = 4)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Usuarios" ("Email", "Nome")
+      VALUES (@p0, @p1)
+      RETURNING "Id";
+info: DimDim.Api[0]
+      HTTP POST /api/usuarios => 201; traceId=0HNPERSSPBL7T
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Usuarios" AS "u"
+      WHERE "u"."Id" = @__id_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?' (Size = 4), @p2='?' (DbType = Int32), @p3='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      INSERT INTO "Transacoes" ("Data", "Descricao", "UsuarioId", "Valor")
+      VALUES (@p0, @p1, @p2, @p3)
+      RETURNING "Id";
+info: DimDim.Api[0]
+      HTTP POST /api/transacoes => 201; traceId=0HNPERSSPBL7U
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "t"."Id", "t"."Data", "t"."Descricao", "t"."UsuarioId", "t"."Valor", "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Transacoes" AS "t"
+      INNER JOIN "Usuarios" AS "u" ON "t"."UsuarioId" = "u"."Id"
+      WHERE "t"."Id" = @__id_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Usuarios" AS "u"
+      WHERE "u"."Id" = @__id_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p2='?' (DbType = Int32), @p0='?' (Size = 10), @p1='?' (DbType = Decimal)], CommandType='Text', CommandTimeout='30']
+      UPDATE "Transacoes" SET "Descricao" = @p0, "Valor" = @p1
+      WHERE "Id" = @p2
+      RETURNING 1;
+info: DimDim.Api[0]
+      HTTP PUT /api/transacoes/6 => 204; traceId=0HNPERSSPBL7V
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Usuarios" AS "u"
+      WHERE "u"."Id" = @__id_0
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      DELETE FROM "Usuarios"
+      WHERE "Id" = @p0
+      RETURNING 1;
+info: DimDim.Api[0]
+      HTTP DELETE /api/usuarios/2 => 204; traceId=0HNPERSSPBL80
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT "t"."Id", "t"."Data", "t"."Descricao", "t"."UsuarioId", "t"."Valor", "u"."Id", "u"."Email", "u"."Nome"
+      FROM "Transacoes" AS "t"
+      INNER JOIN "Usuarios" AS "u" ON "t"."UsuarioId" = "u"."Id"
+      WHERE "t"."Id" = @__id_0
+      LIMIT 1
+fail: Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware[1]
+      An unhandled exception has occurred while executing the request.
+      DimDim.Domain.ResourceNotFoundException: Transa��o n�o encontrada.
+         at DimDim.Application.TransacaoService.Find(Int32 id, CancellationToken ct) in C:\Users\nanab\DimDim-Cloud\DimDim.Application\Services.cs:line 31
+         at DimDim.Application.TransacaoService.GetById(Int32 id, CancellationToken ct) in C:\Users\nanab\DimDim-Cloud\DimDim.Application\Services.cs:line 32
+         at DimDim.Api.Controllers.TransacoesController.GetById(Int32 id, CancellationToken ct) in C:\Users\nanab\DimDim-Cloud\DimDim.Api\Controllers\TransacoesController.cs:line 16
+         at lambda_method393(Closure, Object)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+      --- End of stack trace from previous location ---
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Program.<>c__DisplayClass0_0.<<<Main>$>b__7>d.MoveNext() in C:\Users\nanab\DimDim-Cloud\DimDim.Api\Program.cs:line 46
+      --- End of stack trace from previous location ---
+         at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+         at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+         at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+fail: DimDim.Api.GlobalExceptionHandler[0]
+      Falha HTTP 404; traceId=0HNPERSSPBL81
+      DimDim.Domain.ResourceNotFoundException: Transa��o n�o encontrada.
+         at DimDim.Application.TransacaoService.Find(Int32 id, CancellationToken ct) in C:\Users\nanab\DimDim-Cloud\DimDim.Application\Services.cs:line 31
+         at DimDim.Application.TransacaoService.GetById(Int32 id, CancellationToken ct) in C:\Users\nanab\DimDim-Cloud\DimDim.Application\Services.cs:line 32
+         at DimDim.Api.Controllers.TransacoesController.GetById(Int32 id, CancellationToken ct) in C:\Users\nanab\DimDim-Cloud\DimDim.Api\Controllers\TransacoesController.cs:line 16
+         at lambda_method393(Closure, Object)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+      --- End of stack trace from previous location ---
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+         at Program.<>c__DisplayClass0_0.<<<Main>$>b__7>d.MoveNext() in C:\Users\nanab\DimDim-Cloud\DimDim.Api\Program.cs:line 46
+      --- End of stack trace from previous location ---
+         at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+         at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+         at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddlewareImpl.<Invoke>g__Awaited|10_0(ExceptionHandlerMiddlewareImpl middleware, HttpContext context, Task task)
+[xUnit.net 00:00:05.70]   Finished:    DimDim.Api.Tests
+  Aprovado ContractTests.RateLimitReturnsRetryAfterButHealthAndGetRemainAvailable [313 ms]
+  Aprovado ContractTests.CrudAndCascadeRemainAvailableWithDefaultVersion [183 ms]
+
+Execução de Teste Bem-sucedida.
+Total de testes: 3
+     Aprovados: 3
+Tempo total: 6,6483 Segundos
+Arquivo de resultados: C:\Users\nanab\DimDim-Cloud\artifacts\test-results\cp5-final_net9.0_20261020162041.trx

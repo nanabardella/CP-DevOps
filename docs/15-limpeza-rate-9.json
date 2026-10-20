@@ -1,0 +1,19 @@
+{
+    "name":  "15-limpeza-rate-9",
+    "executedAtUtc":  "2026-10-20T19:28:26.4234824Z",
+    "method":  "DELETE",
+    "url":  "https://dimdim-api-561439-nb261001.azurewebsites.net/api/transacoes/9",
+    "requestHeaders":  {
+
+                       },
+    "status":  204,
+    "headers":  {
+                    "Request-Context":  "appId=cid-v1:34294f73-c161-45bb-85d0-ab114555cf4e",
+                    "api-supported-versions":  "2.0",
+                    "api-deprecated-versions":  "1.0",
+                    "Date":  "Tue, 20 Oct 2026 19:28:21 GMT",
+                    "Server":  "Kestrel"
+                },
+    "body":  null,
+    "rawBody":  ""
+}

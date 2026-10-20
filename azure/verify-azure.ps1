@@ -2,7 +2,8 @@
 [CmdletBinding()]
 param(
     [string]$ResourceGroup = '561439-dimdim-rg',
-    [string]$WebApp = 'dimdim-api-561439-nb261001'
+    [string]$WebApp = 'dimdim-api-561439-nb261001',
+    [string]$OutputPath
 )
 $ErrorActionPreference = 'Stop'
 $baseUrl = "https://$WebApp.azurewebsites.net"
@@ -81,7 +82,7 @@ try {
 } finally {
     if ($sql) { $sql.Dispose() }
     $connection = $null
-    $output = Join-Path (Split-Path $PSScriptRoot -Parent) 'evidencias/azure-crud.json'
+    $output = if ($OutputPath) { $OutputPath } else { Join-Path (Split-Path $PSScriptRoot -Parent) 'evidencias/azure-crud.json' }
     [pscustomobject]@{ executedAtUtc = [DateTime]::UtcNow.ToString('o'); baseUrl = $baseUrl; results = $results.ToArray() } |
         ConvertTo-Json -Depth 12 | Set-Content -LiteralPath $output -Encoding UTF8
 }

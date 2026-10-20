@@ -1,0 +1,90 @@
+{
+    "name":  "05-v2-default",
+    "executedAtUtc":  "2026-10-20T19:28:15.6239519Z",
+    "method":  "GET",
+    "url":  "https://dimdim-api-561439-nb261001.azurewebsites.net/api/transacoes",
+    "requestHeaders":  {
+
+                       },
+    "status":  200,
+    "headers":  {
+                    "Transfer-Encoding":  "chunked",
+                    "Request-Context":  "appId=cid-v1:34294f73-c161-45bb-85d0-ab114555cf4e",
+                    "api-supported-versions":  "2.0",
+                    "api-deprecated-versions":  "1.0",
+                    "Date":  "Tue, 20 Oct 2026 19:28:10 GMT",
+                    "Server":  "Kestrel",
+                    "Content-Type":  "application/json; charset=utf-8"
+                },
+    "body":  {
+                 "page":  1,
+                 "pageSize":  20,
+                 "totalItems":  5,
+                 "totalPages":  1,
+                 "items":  [
+                               {
+                                   "id":  3,
+                                   "descricao":  "Compra CP5 1",
+                                   "valor":  25.50,
+                                   "data":  "2026-10-20T12:00:00",
+                                   "usuarioId":  2,
+                                   "usuario":  {
+                                                   "id":  2,
+                                                   "nome":  "Demo CP5",
+                                                   "email":  "cp5-c99c45cca48e46328426d5041e92d196@example.com"
+                                               }
+                               },
+                               {
+                                   "id":  4,
+                                   "descricao":  "Compra CP5 2",
+                                   "valor":  25.50,
+                                   "data":  "2026-10-20T12:00:00",
+                                   "usuarioId":  2,
+                                   "usuario":  {
+                                                   "id":  2,
+                                                   "nome":  "Demo CP5",
+                                                   "email":  "cp5-c99c45cca48e46328426d5041e92d196@example.com"
+                                               }
+                               },
+                               {
+                                   "id":  5,
+                                   "descricao":  "Compra CP5 3",
+                                   "valor":  25.50,
+                                   "data":  "2026-10-20T12:00:00",
+                                   "usuarioId":  2,
+                                   "usuario":  {
+                                                   "id":  2,
+                                                   "nome":  "Demo CP5",
+                                                   "email":  "cp5-c99c45cca48e46328426d5041e92d196@example.com"
+                                               }
+                               },
+                               {
+                                   "id":  6,
+                                   "descricao":  "Compra CP5 4",
+                                   "valor":  25.50,
+                                   "data":  "2026-10-20T12:00:00",
+                                   "usuarioId":  2,
+                                   "usuario":  {
+                                                   "id":  2,
+                                                   "nome":  "Demo CP5",
+                                                   "email":  "cp5-c99c45cca48e46328426d5041e92d196@example.com"
+                                               }
+                               },
+                               {
+                                   "id":  7,
+                                   "descricao":  "Compra CP5 5",
+                                   "valor":  25.50,
+                                   "data":  "2026-10-20T12:00:00",
+                                   "usuarioId":  2,
+                                   "usuario":  {
+                                                   "id":  2,
+                                                   "nome":  "Demo CP5",
+                                                   "email":  "cp5-c99c45cca48e46328426d5041e92d196@example.com"
+                                               }
+                               }
+                           ],
+                 "hasPrevious":  false,
+                 "hasNext":  false
+             },
+    "rawBody":  "{\"page\":1,\"pageSize\":20,\"totalItems\":5,\"totalPages\":1,\"items\":[{\"id\":3,\"descricao\":\"Compra CP5 1\",\"valor\":25.50,\"data\":\"2026-10-20T12:00:00\",\"usuarioId\":2,\"usuario\":{\"id\":2,\"nome\":\"Demo CP5\",\"email\":\"cp5-c99c45cca48e46328426d5041e92d196@example.com\"}},{\"id\":4,\"descricao\":\"Compra CP5 2\",\"valor\":25.50,\"data\":\"2026-10-20T12:00:00\",\"usuarioId\":2,\"usuario\":{\"id\":2,\"nome\":\"Demo CP5\",\"email\":\"cp5-c99c45cca48e46328426d5041e92d196@example.com\"}},{\"id\":5,\"descricao\":\"Compra CP5 3\",\"valor\":25.50,\"data\":\"2026-10-20T12:00:00\",\"usuarioId\":2,\"usuario\":{\"id\":2,\"nome\":\"Demo CP5\",\"email\":\"cp5-c99c45cca48e46328426d5041e92d196@example.com\"}},{\"id\":6,\"descricao\":\"Compra CP5 4\",\"valor\":25.50,\"data\":\"2026-10-20T12:00:00\",\"usuarioId\":2,\"usuario\":{\"id\":2,\"nome\":\"Demo CP5\",\"email\":\"cp5-c99c45cca48e46328426d5041e92d196@example.com\"}},{\"id\":7,\"descricao\":\"Compra CP5 5\",\"valor\":25.50,\"data\":\"2026-10-20T12:00:00\",\"usuarioId\":2,\"usuario\":{\"id\":2,\"nome\":\"Demo CP5\",\"email\":\"cp5-c99c45cca48e46328426d5041e92d196@example.com\"}}],\"hasPrevious\":false,\"hasNext\":false}"
+}

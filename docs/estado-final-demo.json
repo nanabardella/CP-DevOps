@@ -1,0 +1,34 @@
+{
+    "page":  1,
+    "pageSize":  2,
+    "totalItems":  5,
+    "totalPages":  3,
+    "items":  [
+                  {
+                      "id":  3,
+                      "descricao":  "Compra CP5 1",
+                      "valor":  25.50,
+                      "data":  "2026-10-20T12:00:00",
+                      "usuarioId":  2,
+                      "usuario":  {
+                                      "id":  2,
+                                      "nome":  "Demo CP5",
+                                      "email":  "cp5-c99c45cca48e46328426d5041e92d196@example.com"
+                                  }
+                  },
+                  {
+                      "id":  4,
+                      "descricao":  "Compra CP5 2",
+                      "valor":  25.50,
+                      "data":  "2026-10-20T12:00:00",
+                      "usuarioId":  2,
+                      "usuario":  {
+                                      "id":  2,
+                                      "nome":  "Demo CP5",
+                                      "email":  "cp5-c99c45cca48e46328426d5041e92d196@example.com"
+                                  }
+                  }
+              ],
+    "hasPrevious":  false,
+    "hasNext":  true
+}

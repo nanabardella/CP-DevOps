@@ -1,0 +1,33 @@
+{
+    "name":  "02-seed-3",
+    "executedAtUtc":  "2026-10-20T19:28:12.2754129Z",
+    "method":  "POST",
+    "url":  "https://dimdim-api-561439-nb261001.azurewebsites.net/api/transacoes",
+    "requestHeaders":  {
+
+                       },
+    "status":  201,
+    "headers":  {
+                    "Transfer-Encoding":  "chunked",
+                    "Request-Context":  "appId=cid-v1:34294f73-c161-45bb-85d0-ab114555cf4e",
+                    "api-supported-versions":  "2.0",
+                    "api-deprecated-versions":  "1.0",
+                    "Date":  "Tue, 20 Oct 2026 19:28:06 GMT",
+                    "Location":  "https://dimdim-api-561439-nb261001.azurewebsites.net/api/transacoes/5",
+                    "Server":  "Kestrel",
+                    "Content-Type":  "application/json; charset=utf-8"
+                },
+    "body":  {
+                 "id":  5,
+                 "descricao":  "Compra CP5 3",
+                 "valor":  25.5,
+                 "data":  "2026-10-20T12:00:00",
+                 "usuarioId":  2,
+                 "usuario":  {
+                                 "id":  2,
+                                 "nome":  "Demo CP5",
+                                 "email":  "cp5-c99c45cca48e46328426d5041e92d196@example.com"
+                             }
+             },
+    "rawBody":  "{\"id\":5,\"descricao\":\"Compra CP5 3\",\"valor\":25.5,\"data\":\"2026-10-20T12:00:00\",\"usuarioId\":2,\"usuario\":{\"id\":2,\"nome\":\"Demo CP5\",\"email\":\"cp5-c99c45cca48e46328426d5041e92d196@example.com\"}}"
+}

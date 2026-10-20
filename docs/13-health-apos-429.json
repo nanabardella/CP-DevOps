@@ -1,0 +1,22 @@
+{
+    "name":  "13-health-apos-429",
+    "executedAtUtc":  "2026-10-20T19:28:25.3090828Z",
+    "method":  "GET",
+    "url":  "https://dimdim-api-561439-nb261001.azurewebsites.net/health",
+    "requestHeaders":  {
+
+                       },
+    "status":  200,
+    "headers":  {
+                    "Transfer-Encoding":  "chunked",
+                    "Request-Context":  "appId=cid-v1:34294f73-c161-45bb-85d0-ab114555cf4e",
+                    "Date":  "Tue, 20 Oct 2026 19:28:20 GMT",
+                    "Server":  "Kestrel",
+                    "Content-Type":  "application/json; charset=utf-8"
+                },
+    "body":  {
+                 "status":  "ok",
+                 "database":  "reachable"
+             },
+    "rawBody":  "{\"status\":\"ok\",\"database\":\"reachable\"}"
+}

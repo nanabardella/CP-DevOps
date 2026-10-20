@@ -1,0 +1,630 @@
+{
+    "name":  "11-swagger-v2.0",
+    "executedAtUtc":  "2026-10-20T19:28:22.8831990Z",
+    "method":  "GET",
+    "url":  "https://dimdim-api-561439-nb261001.azurewebsites.net/swagger/v2.0/swagger.json",
+    "requestHeaders":  {
+
+                       },
+    "status":  200,
+    "headers":  {
+                    "Transfer-Encoding":  "chunked",
+                    "Request-Context":  "appId=cid-v1:34294f73-c161-45bb-85d0-ab114555cf4e",
+                    "Date":  "Tue, 20 Oct 2026 19:28:18 GMT",
+                    "Server":  "Kestrel",
+                    "Content-Type":  "application/json; charset=utf-8"
+                },
+    "body":  {
+                 "openapi":  "3.0.4",
+                 "info":  {
+                              "title":  "DimDim 2.0",
+                              "description":  "Versão atual: listagem de transações paginada.",
+                              "version":  "2.0"
+                          },
+                 "paths":  {
+                               "/health":  {
+                                               "get":  {
+                                                           "tags":  [
+                                                                        "DimDim.Api"
+                                                                    ],
+                                                           "responses":  {
+                                                                             "200":  {
+                                                                                         "description":  "OK"
+                                                                                     }
+                                                                         }
+                                                       }
+                                           },
+                               "/api/transacoes":  {
+                                                       "get":  {
+                                                                   "tags":  [
+                                                                                "Transacoes"
+                                                                            ],
+                                                                   "parameters":  [
+                                                                                      {
+                                                                                          "name":  "page",
+                                                                                          "in":  "query",
+                                                                                          "schema":  {
+                                                                                                         "type":  "integer",
+                                                                                                         "format":  "int32",
+                                                                                                         "default":  1
+                                                                                                     }
+                                                                                      },
+                                                                                      {
+                                                                                          "name":  "pageSize",
+                                                                                          "in":  "query",
+                                                                                          "schema":  {
+                                                                                                         "type":  "integer",
+                                                                                                         "format":  "int32",
+                                                                                                         "default":  20
+                                                                                                     }
+                                                                                      },
+                                                                                      {
+                                                                                          "name":  "api-version",
+                                                                                          "in":  "query",
+                                                                                          "schema":  {
+                                                                                                         "type":  "string"
+                                                                                                     }
+                                                                                      },
+                                                                                      {
+                                                                                          "name":  "X-Api-Version",
+                                                                                          "in":  "header",
+                                                                                          "schema":  {
+                                                                                                         "type":  "string"
+                                                                                                     }
+                                                                                      }
+                                                                                  ],
+                                                                   "responses":  {
+                                                                                     "200":  {
+                                                                                                 "description":  "OK",
+                                                                                                 "content":  {
+                                                                                                                 "text/plain":  {
+                                                                                                                                    "schema":  {
+                                                                                                                                                   "$ref":  "#/components/schemas/TransacaoResponsePagedResult"
+                                                                                                                                               }
+                                                                                                                                },
+                                                                                                                 "application/json":  {
+                                                                                                                                          "schema":  {
+                                                                                                                                                         "$ref":  "#/components/schemas/TransacaoResponsePagedResult"
+                                                                                                                                                     }
+                                                                                                                                      },
+                                                                                                                 "text/json":  {
+                                                                                                                                   "schema":  {
+                                                                                                                                                  "$ref":  "#/components/schemas/TransacaoResponsePagedResult"
+                                                                                                                                              }
+                                                                                                                               }
+                                                                                                             }
+                                                                                             }
+                                                                                 }
+                                                               },
+                                                       "post":  {
+                                                                    "tags":  [
+                                                                                 "Transacoes"
+                                                                             ],
+                                                                    "parameters":  [
+                                                                                       {
+                                                                                           "name":  "api-version",
+                                                                                           "in":  "query",
+                                                                                           "schema":  {
+                                                                                                          "type":  "string"
+                                                                                                      }
+                                                                                       },
+                                                                                       {
+                                                                                           "name":  "X-Api-Version",
+                                                                                           "in":  "header",
+                                                                                           "schema":  {
+                                                                                                          "type":  "string"
+                                                                                                      }
+                                                                                       }
+                                                                                   ],
+                                                                    "requestBody":  {
+                                                                                        "content":  {
+                                                                                                        "application/json":  {
+                                                                                                                                 "schema":  {
+                                                                                                                                                "$ref":  "#/components/schemas/TransacaoRequest"
+                                                                                                                                            }
+                                                                                                                             },
+                                                                                                        "text/json":  {
+                                                                                                                          "schema":  {
+                                                                                                                                         "$ref":  "#/components/schemas/TransacaoRequest"
+                                                                                                                                     }
+                                                                                                                      },
+                                                                                                        "application/*+json":  {
+                                                                                                                                   "schema":  {
+                                                                                                                                                  "$ref":  "#/components/schemas/TransacaoRequest"
+                                                                                                                                              }
+                                                                                                                               }
+                                                                                                    }
+                                                                                    },
+                                                                    "responses":  {
+                                                                                      "200":  {
+                                                                                                  "description":  "OK",
+                                                                                                  "content":  {
+                                                                                                                  "text/plain":  {
+                                                                                                                                     "schema":  {
+                                                                                                                                                    "$ref":  "#/components/schemas/TransacaoResponse"
+                                                                                                                                                }
+                                                                                                                                 },
+                                                                                                                  "application/json":  {
+                                                                                                                                           "schema":  {
+                                                                                                                                                          "$ref":  "#/components/schemas/TransacaoResponse"
+                                                                                                                                                      }
+                                                                                                                                       },
+                                                                                                                  "text/json":  {
+                                                                                                                                    "schema":  {
+                                                                                                                                                   "$ref":  "#/components/schemas/TransacaoResponse"
+                                                                                                                                               }
+                                                                                                                                }
+                                                                                                              }
+                                                                                              }
+                                                                                  }
+                                                                }
+                                                   },
+                               "/api/transacoes/{id}":  {
+                                                            "get":  {
+                                                                        "tags":  [
+                                                                                     "Transacoes"
+                                                                                 ],
+                                                                        "parameters":  [
+                                                                                           {
+                                                                                               "name":  "id",
+                                                                                               "in":  "path",
+                                                                                               "required":  true,
+                                                                                               "schema":  {
+                                                                                                              "type":  "integer",
+                                                                                                              "format":  "int32"
+                                                                                                          }
+                                                                                           },
+                                                                                           {
+                                                                                               "name":  "api-version",
+                                                                                               "in":  "query",
+                                                                                               "schema":  {
+                                                                                                              "type":  "string"
+                                                                                                          }
+                                                                                           },
+                                                                                           {
+                                                                                               "name":  "X-Api-Version",
+                                                                                               "in":  "header",
+                                                                                               "schema":  {
+                                                                                                              "type":  "string"
+                                                                                                          }
+                                                                                           }
+                                                                                       ],
+                                                                        "responses":  {
+                                                                                          "200":  {
+                                                                                                      "description":  "OK",
+                                                                                                      "content":  {
+                                                                                                                      "text/plain":  {
+                                                                                                                                         "schema":  {
+                                                                                                                                                        "$ref":  "#/components/schemas/TransacaoResponse"
+                                                                                                                                                    }
+                                                                                                                                     },
+                                                                                                                      "application/json":  {
+                                                                                                                                               "schema":  {
+                                                                                                                                                              "$ref":  "#/components/schemas/TransacaoResponse"
+                                                                                                                                                          }
+                                                                                                                                           },
+                                                                                                                      "text/json":  {
+                                                                                                                                        "schema":  {
+                                                                                                                                                       "$ref":  "#/components/schemas/TransacaoResponse"
+                                                                                                                                                   }
+                                                                                                                                    }
+                                                                                                                  }
+                                                                                                  }
+                                                                                      }
+                                                                    },
+                                                            "put":  {
+                                                                        "tags":  [
+                                                                                     "Transacoes"
+                                                                                 ],
+                                                                        "parameters":  [
+                                                                                           {
+                                                                                               "name":  "id",
+                                                                                               "in":  "path",
+                                                                                               "required":  true,
+                                                                                               "schema":  {
+                                                                                                              "type":  "integer",
+                                                                                                              "format":  "int32"
+                                                                                                          }
+                                                                                           },
+                                                                                           {
+                                                                                               "name":  "api-version",
+                                                                                               "in":  "query",
+                                                                                               "schema":  {
+                                                                                                              "type":  "string"
+                                                                                                          }
+                                                                                           },
+                                                                                           {
+                                                                                               "name":  "X-Api-Version",
+                                                                                               "in":  "header",
+                                                                                               "schema":  {
+                                                                                                              "type":  "string"
+                                                                                                          }
+                                                                                           }
+                                                                                       ],
+                                                                        "requestBody":  {
+                                                                                            "content":  {
+                                                                                                            "application/json":  {
+                                                                                                                                     "schema":  {
+                                                                                                                                                    "$ref":  "#/components/schemas/TransacaoRequest"
+                                                                                                                                                }
+                                                                                                                                 },
+                                                                                                            "text/json":  {
+                                                                                                                              "schema":  {
+                                                                                                                                             "$ref":  "#/components/schemas/TransacaoRequest"
+                                                                                                                                         }
+                                                                                                                          },
+                                                                                                            "application/*+json":  {
+                                                                                                                                       "schema":  {
+                                                                                                                                                      "$ref":  "#/components/schemas/TransacaoRequest"
+                                                                                                                                                  }
+                                                                                                                                   }
+                                                                                                        }
+                                                                                        },
+                                                                        "responses":  {
+                                                                                          "200":  {
+                                                                                                      "description":  "OK"
+                                                                                                  }
+                                                                                      }
+                                                                    },
+                                                            "delete":  {
+                                                                           "tags":  [
+                                                                                        "Transacoes"
+                                                                                    ],
+                                                                           "parameters":  [
+                                                                                              {
+                                                                                                  "name":  "id",
+                                                                                                  "in":  "path",
+                                                                                                  "required":  true,
+                                                                                                  "schema":  {
+                                                                                                                 "type":  "integer",
+                                                                                                                 "format":  "int32"
+                                                                                                             }
+                                                                                              },
+                                                                                              {
+                                                                                                  "name":  "api-version",
+                                                                                                  "in":  "query",
+                                                                                                  "schema":  {
+                                                                                                                 "type":  "string"
+                                                                                                             }
+                                                                                              },
+                                                                                              {
+                                                                                                  "name":  "X-Api-Version",
+                                                                                                  "in":  "header",
+                                                                                                  "schema":  {
+                                                                                                                 "type":  "string"
+                                                                                                             }
+                                                                                              }
+                                                                                          ],
+                                                                           "responses":  {
+                                                                                             "200":  {
+                                                                                                         "description":  "OK"
+                                                                                                     }
+                                                                                         }
+                                                                       }
+                                                        },
+                               "/api/usuarios":  {
+                                                     "get":  {
+                                                                 "tags":  [
+                                                                              "Usuarios"
+                                                                          ],
+                                                                 "responses":  {
+                                                                                   "200":  {
+                                                                                               "description":  "OK",
+                                                                                               "content":  {
+                                                                                                               "text/plain":  {
+                                                                                                                                  "schema":  {
+                                                                                                                                                 "type":  "array",
+                                                                                                                                                 "items":  {
+                                                                                                                                                               "$ref":  "#/components/schemas/UsuarioResponse"
+                                                                                                                                                           }
+                                                                                                                                             }
+                                                                                                                              },
+                                                                                                               "application/json":  {
+                                                                                                                                        "schema":  {
+                                                                                                                                                       "type":  "array",
+                                                                                                                                                       "items":  {
+                                                                                                                                                                     "$ref":  "#/components/schemas/UsuarioResponse"
+                                                                                                                                                                 }
+                                                                                                                                                   }
+                                                                                                                                    },
+                                                                                                               "text/json":  {
+                                                                                                                                 "schema":  {
+                                                                                                                                                "type":  "array",
+                                                                                                                                                "items":  {
+                                                                                                                                                              "$ref":  "#/components/schemas/UsuarioResponse"
+                                                                                                                                                          }
+                                                                                                                                            }
+                                                                                                                             }
+                                                                                                           }
+                                                                                           }
+                                                                               }
+                                                             },
+                                                     "post":  {
+                                                                  "tags":  [
+                                                                               "Usuarios"
+                                                                           ],
+                                                                  "requestBody":  {
+                                                                                      "content":  {
+                                                                                                      "application/json":  {
+                                                                                                                               "schema":  {
+                                                                                                                                              "$ref":  "#/components/schemas/UsuarioRequest"
+                                                                                                                                          }
+                                                                                                                           },
+                                                                                                      "text/json":  {
+                                                                                                                        "schema":  {
+                                                                                                                                       "$ref":  "#/components/schemas/UsuarioRequest"
+                                                                                                                                   }
+                                                                                                                    },
+                                                                                                      "application/*+json":  {
+                                                                                                                                 "schema":  {
+                                                                                                                                                "$ref":  "#/components/schemas/UsuarioRequest"
+                                                                                                                                            }
+                                                                                                                             }
+                                                                                                  }
+                                                                                  },
+                                                                  "responses":  {
+                                                                                    "200":  {
+                                                                                                "description":  "OK",
+                                                                                                "content":  {
+                                                                                                                "text/plain":  {
+                                                                                                                                   "schema":  {
+                                                                                                                                                  "$ref":  "#/components/schemas/UsuarioResponse"
+                                                                                                                                              }
+                                                                                                                               },
+                                                                                                                "application/json":  {
+                                                                                                                                         "schema":  {
+                                                                                                                                                        "$ref":  "#/components/schemas/UsuarioResponse"
+                                                                                                                                                    }
+                                                                                                                                     },
+                                                                                                                "text/json":  {
+                                                                                                                                  "schema":  {
+                                                                                                                                                 "$ref":  "#/components/schemas/UsuarioResponse"
+                                                                                                                                             }
+                                                                                                                              }
+                                                                                                            }
+                                                                                            }
+                                                                                }
+                                                              }
+                                                 },
+                               "/api/usuarios/{id}":  {
+                                                          "get":  {
+                                                                      "tags":  [
+                                                                                   "Usuarios"
+                                                                               ],
+                                                                      "parameters":  [
+                                                                                         {
+                                                                                             "name":  "id",
+                                                                                             "in":  "path",
+                                                                                             "required":  true,
+                                                                                             "schema":  {
+                                                                                                            "type":  "integer",
+                                                                                                            "format":  "int32"
+                                                                                                        }
+                                                                                         }
+                                                                                     ],
+                                                                      "responses":  {
+                                                                                        "200":  {
+                                                                                                    "description":  "OK",
+                                                                                                    "content":  {
+                                                                                                                    "text/plain":  {
+                                                                                                                                       "schema":  {
+                                                                                                                                                      "$ref":  "#/components/schemas/UsuarioResponse"
+                                                                                                                                                  }
+                                                                                                                                   },
+                                                                                                                    "application/json":  {
+                                                                                                                                             "schema":  {
+                                                                                                                                                            "$ref":  "#/components/schemas/UsuarioResponse"
+                                                                                                                                                        }
+                                                                                                                                         },
+                                                                                                                    "text/json":  {
+                                                                                                                                      "schema":  {
+                                                                                                                                                     "$ref":  "#/components/schemas/UsuarioResponse"
+                                                                                                                                                 }
+                                                                                                                                  }
+                                                                                                                }
+                                                                                                }
+                                                                                    }
+                                                                  },
+                                                          "put":  {
+                                                                      "tags":  [
+                                                                                   "Usuarios"
+                                                                               ],
+                                                                      "parameters":  [
+                                                                                         {
+                                                                                             "name":  "id",
+                                                                                             "in":  "path",
+                                                                                             "required":  true,
+                                                                                             "schema":  {
+                                                                                                            "type":  "integer",
+                                                                                                            "format":  "int32"
+                                                                                                        }
+                                                                                         }
+                                                                                     ],
+                                                                      "requestBody":  {
+                                                                                          "content":  {
+                                                                                                          "application/json":  {
+                                                                                                                                   "schema":  {
+                                                                                                                                                  "$ref":  "#/components/schemas/UsuarioRequest"
+                                                                                                                                              }
+                                                                                                                               },
+                                                                                                          "text/json":  {
+                                                                                                                            "schema":  {
+                                                                                                                                           "$ref":  "#/components/schemas/UsuarioRequest"
+                                                                                                                                       }
+                                                                                                                        },
+                                                                                                          "application/*+json":  {
+                                                                                                                                     "schema":  {
+                                                                                                                                                    "$ref":  "#/components/schemas/UsuarioRequest"
+                                                                                                                                                }
+                                                                                                                                 }
+                                                                                                      }
+                                                                                      },
+                                                                      "responses":  {
+                                                                                        "200":  {
+                                                                                                    "description":  "OK"
+                                                                                                }
+                                                                                    }
+                                                                  },
+                                                          "delete":  {
+                                                                         "tags":  [
+                                                                                      "Usuarios"
+                                                                                  ],
+                                                                         "parameters":  [
+                                                                                            {
+                                                                                                "name":  "id",
+                                                                                                "in":  "path",
+                                                                                                "required":  true,
+                                                                                                "schema":  {
+                                                                                                               "type":  "integer",
+                                                                                                               "format":  "int32"
+                                                                                                           }
+                                                                                            }
+                                                                                        ],
+                                                                         "responses":  {
+                                                                                           "200":  {
+                                                                                                       "description":  "OK"
+                                                                                                   }
+                                                                                       }
+                                                                     }
+                                                      }
+                           },
+                 "components":  {
+                                    "schemas":  {
+                                                    "TransacaoRequest":  {
+                                                                             "required":  [
+                                                                                              "descricao"
+                                                                                          ],
+                                                                             "type":  "object",
+                                                                             "properties":  {
+                                                                                                "descricao":  {
+                                                                                                                  "maxLength":  200,
+                                                                                                                  "minLength":  0,
+                                                                                                                  "type":  "string"
+                                                                                                              },
+                                                                                                "valor":  {
+                                                                                                              "type":  "number",
+                                                                                                              "format":  "double"
+                                                                                                          },
+                                                                                                "data":  {
+                                                                                                             "type":  "string",
+                                                                                                             "format":  "date-time"
+                                                                                                         },
+                                                                                                "usuarioId":  {
+                                                                                                                  "maximum":  2147483647,
+                                                                                                                  "minimum":  1,
+                                                                                                                  "type":  "integer",
+                                                                                                                  "format":  "int32"
+                                                                                                              }
+                                                                                            },
+                                                                             "additionalProperties":  false
+                                                                         },
+                                                    "TransacaoResponse":  {
+                                                                              "type":  "object",
+                                                                              "properties":  {
+                                                                                                 "id":  {
+                                                                                                            "type":  "integer",
+                                                                                                            "format":  "int32"
+                                                                                                        },
+                                                                                                 "descricao":  {
+                                                                                                                   "type":  "string",
+                                                                                                                   "nullable":  true
+                                                                                                               },
+                                                                                                 "valor":  {
+                                                                                                               "type":  "number",
+                                                                                                               "format":  "double"
+                                                                                                           },
+                                                                                                 "data":  {
+                                                                                                              "type":  "string",
+                                                                                                              "format":  "date-time"
+                                                                                                          },
+                                                                                                 "usuarioId":  {
+                                                                                                                   "type":  "integer",
+                                                                                                                   "format":  "int32"
+                                                                                                               },
+                                                                                                 "usuario":  {
+                                                                                                                 "$ref":  "#/components/schemas/UsuarioResponse"
+                                                                                                             }
+                                                                                             },
+                                                                              "additionalProperties":  false
+                                                                          },
+                                                    "TransacaoResponsePagedResult":  {
+                                                                                         "type":  "object",
+                                                                                         "properties":  {
+                                                                                                            "page":  {
+                                                                                                                         "type":  "integer",
+                                                                                                                         "format":  "int32"
+                                                                                                                     },
+                                                                                                            "pageSize":  {
+                                                                                                                             "type":  "integer",
+                                                                                                                             "format":  "int32"
+                                                                                                                         },
+                                                                                                            "totalItems":  {
+                                                                                                                               "type":  "integer",
+                                                                                                                               "format":  "int32"
+                                                                                                                           },
+                                                                                                            "totalPages":  {
+                                                                                                                               "type":  "integer",
+                                                                                                                               "format":  "int32"
+                                                                                                                           },
+                                                                                                            "items":  {
+                                                                                                                          "type":  "array",
+                                                                                                                          "items":  {
+                                                                                                                                        "$ref":  "#/components/schemas/TransacaoResponse"
+                                                                                                                                    },
+                                                                                                                          "nullable":  true
+                                                                                                                      },
+                                                                                                            "hasPrevious":  {
+                                                                                                                                "type":  "boolean",
+                                                                                                                                "readOnly":  true
+                                                                                                                            },
+                                                                                                            "hasNext":  {
+                                                                                                                            "type":  "boolean",
+                                                                                                                            "readOnly":  true
+                                                                                                                        }
+                                                                                                        },
+                                                                                         "additionalProperties":  false
+                                                                                     },
+                                                    "UsuarioRequest":  {
+                                                                           "required":  [
+                                                                                            "email",
+                                                                                            "nome"
+                                                                                        ],
+                                                                           "type":  "object",
+                                                                           "properties":  {
+                                                                                              "nome":  {
+                                                                                                           "maxLength":  100,
+                                                                                                           "minLength":  0,
+                                                                                                           "type":  "string"
+                                                                                                       },
+                                                                                              "email":  {
+                                                                                                            "maxLength":  150,
+                                                                                                            "minLength":  0,
+                                                                                                            "type":  "string",
+                                                                                                            "format":  "email"
+                                                                                                        }
+                                                                                          },
+                                                                           "additionalProperties":  false
+                                                                       },
+                                                    "UsuarioResponse":  {
+                                                                            "type":  "object",
+                                                                            "properties":  {
+                                                                                               "id":  {
+                                                                                                          "type":  "integer",
+                                                                                                          "format":  "int32"
+                                                                                                      },
+                                                                                               "nome":  {
+                                                                                                            "type":  "string",
+                                                                                                            "nullable":  true
+                                                                                                        },
+                                                                                               "email":  {
+                                                                                                             "type":  "string",
+                                                                                                             "nullable":  true
+                                                                                                         }
+                                                                                           },
+                                                                            "additionalProperties":  false
+                                                                        }
+                                                }
+                                }
+             },
+    "rawBody":  "{\n  \"openapi\": \"3.0.4\",\n  \"info\": {\n    \"title\": \"DimDim 2.0\",\n    \"description\": \"Versão atual: listagem de transações paginada.\",\n    \"version\": \"2.0\"\n  },\n  \"paths\": {\n    \"/health\": {\n      \"get\": {\n        \"tags\": [\n          \"DimDim.Api\"\n        ],\n        \"responses\": {\n          \"200\": {\n            \"description\": \"OK\"\n          }\n        }\n      }\n    },\n    \"/api/transacoes\": {\n      \"get\": {\n        \"tags\": [\n          \"Transacoes\"\n        ],\n        \"parameters\": [\n          {\n            \"name\": \"page\",\n            \"in\": \"query\",\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\",\n              \"default\": 1\n            }\n          },\n          {\n            \"name\": \"pageSize\",\n            \"in\": \"query\",\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\",\n              \"default\": 20\n            }\n          },\n          {\n            \"name\": \"api-version\",\n            \"in\": \"query\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"X-Api-Version\",\n            \"in\": \"header\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"responses\": {\n          \"200\": {\n            \"description\": \"OK\",\n            \"content\": {\n              \"text/plain\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/TransacaoResponsePagedResult\"\n                }\n              },\n              \"application/json\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/TransacaoResponsePagedResult\"\n                }\n              },\n              \"text/json\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/TransacaoResponsePagedResult\"\n                }\n              }\n            }\n          }\n        }\n      },\n      \"post\": {\n        \"tags\": [\n          \"Transacoes\"\n        ],\n        \"parameters\": [\n          {\n            \"name\": \"api-version\",\n            \"in\": \"query\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"X-Api-Version\",\n            \"in\": \"header\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"$ref\": \"#/components/schemas/TransacaoRequest\"\n              }\n            },\n            \"text/json\": {\n              \"schema\": {\n                \"$ref\": \"#/components/schemas/TransacaoRequest\"\n              }\n            },\n            \"application/*+json\": {\n              \"schema\": {\n                \"$ref\": \"#/components/schemas/TransacaoRequest\"\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"OK\",\n            \"content\": {\n              \"text/plain\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/TransacaoResponse\"\n                }\n              },\n              \"application/json\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/TransacaoResponse\"\n                }\n              },\n              \"text/json\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/TransacaoResponse\"\n                }\n              }\n            }\n          }\n        }\n      }\n    },\n    \"/api/transacoes/{id}\": {\n      \"get\": {\n        \"tags\": [\n          \"Transacoes\"\n        ],\n        \"parameters\": [\n          {\n            \"name\": \"id\",\n            \"in\": \"path\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\"\n            }\n          },\n          {\n            \"name\": \"api-version\",\n            \"in\": \"query\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"X-Api-Version\",\n            \"in\": \"header\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"responses\": {\n          \"200\": {\n            \"description\": \"OK\",\n            \"content\": {\n              \"text/plain\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/TransacaoResponse\"\n                }\n              },\n              \"application/json\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/TransacaoResponse\"\n                }\n              },\n              \"text/json\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/TransacaoResponse\"\n                }\n              }\n            }\n          }\n        }\n      },\n      \"put\": {\n        \"tags\": [\n          \"Transacoes\"\n        ],\n        \"parameters\": [\n          {\n            \"name\": \"id\",\n            \"in\": \"path\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\"\n            }\n          },\n          {\n            \"name\": \"api-version\",\n            \"in\": \"query\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"X-Api-Version\",\n            \"in\": \"header\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"$ref\": \"#/components/schemas/TransacaoRequest\"\n              }\n            },\n            \"text/json\": {\n              \"schema\": {\n                \"$ref\": \"#/components/schemas/TransacaoRequest\"\n              }\n            },\n            \"application/*+json\": {\n              \"schema\": {\n                \"$ref\": \"#/components/schemas/TransacaoRequest\"\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"OK\"\n          }\n        }\n      },\n      \"delete\": {\n        \"tags\": [\n          \"Transacoes\"\n        ],\n        \"parameters\": [\n          {\n            \"name\": \"id\",\n            \"in\": \"path\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\"\n            }\n          },\n          {\n            \"name\": \"api-version\",\n            \"in\": \"query\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          },\n          {\n            \"name\": \"X-Api-Version\",\n            \"in\": \"header\",\n            \"schema\": {\n              \"type\": \"string\"\n            }\n          }\n        ],\n        \"responses\": {\n          \"200\": {\n            \"description\": \"OK\"\n          }\n        }\n      }\n    },\n    \"/api/usuarios\": {\n      \"get\": {\n        \"tags\": [\n          \"Usuarios\"\n        ],\n        \"responses\": {\n          \"200\": {\n            \"description\": \"OK\",\n            \"content\": {\n              \"text/plain\": {\n                \"schema\": {\n                  \"type\": \"array\",\n                  \"items\": {\n                    \"$ref\": \"#/components/schemas/UsuarioResponse\"\n                  }\n                }\n              },\n              \"application/json\": {\n                \"schema\": {\n                  \"type\": \"array\",\n                  \"items\": {\n                    \"$ref\": \"#/components/schemas/UsuarioResponse\"\n                  }\n                }\n              },\n              \"text/json\": {\n                \"schema\": {\n                  \"type\": \"array\",\n                  \"items\": {\n                    \"$ref\": \"#/components/schemas/UsuarioResponse\"\n                  }\n                }\n              }\n            }\n          }\n        }\n      },\n      \"post\": {\n        \"tags\": [\n          \"Usuarios\"\n        ],\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"$ref\": \"#/components/schemas/UsuarioRequest\"\n              }\n            },\n            \"text/json\": {\n              \"schema\": {\n                \"$ref\": \"#/components/schemas/UsuarioRequest\"\n              }\n            },\n            \"application/*+json\": {\n              \"schema\": {\n                \"$ref\": \"#/components/schemas/UsuarioRequest\"\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"OK\",\n            \"content\": {\n              \"text/plain\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/UsuarioResponse\"\n                }\n              },\n              \"application/json\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/UsuarioResponse\"\n                }\n              },\n              \"text/json\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/UsuarioResponse\"\n                }\n              }\n            }\n          }\n        }\n      }\n    },\n    \"/api/usuarios/{id}\": {\n      \"get\": {\n        \"tags\": [\n          \"Usuarios\"\n        ],\n        \"parameters\": [\n          {\n            \"name\": \"id\",\n            \"in\": \"path\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\"\n            }\n          }\n        ],\n        \"responses\": {\n          \"200\": {\n            \"description\": \"OK\",\n            \"content\": {\n              \"text/plain\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/UsuarioResponse\"\n                }\n              },\n              \"application/json\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/UsuarioResponse\"\n                }\n              },\n              \"text/json\": {\n                \"schema\": {\n                  \"$ref\": \"#/components/schemas/UsuarioResponse\"\n                }\n              }\n            }\n          }\n        }\n      },\n      \"put\": {\n        \"tags\": [\n          \"Usuarios\"\n        ],\n        \"parameters\": [\n          {\n            \"name\": \"id\",\n            \"in\": \"path\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\"\n            }\n          }\n        ],\n        \"requestBody\": {\n          \"content\": {\n            \"application/json\": {\n              \"schema\": {\n                \"$ref\": \"#/components/schemas/UsuarioRequest\"\n              }\n            },\n            \"text/json\": {\n              \"schema\": {\n                \"$ref\": \"#/components/schemas/UsuarioRequest\"\n              }\n            },\n            \"application/*+json\": {\n              \"schema\": {\n                \"$ref\": \"#/components/schemas/UsuarioRequest\"\n              }\n            }\n          }\n        },\n        \"responses\": {\n          \"200\": {\n            \"description\": \"OK\"\n          }\n        }\n      },\n      \"delete\": {\n        \"tags\": [\n          \"Usuarios\"\n        ],\n        \"parameters\": [\n          {\n            \"name\": \"id\",\n            \"in\": \"path\",\n            \"required\": true,\n            \"schema\": {\n              \"type\": \"integer\",\n              \"format\": \"int32\"\n            }\n          }\n        ],\n        \"responses\": {\n          \"200\": {\n            \"description\": \"OK\"\n          }\n        }\n      }\n    }\n  },\n  \"components\": {\n    \"schemas\": {\n      \"TransacaoRequest\": {\n        \"required\": [\n          \"descricao\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"descricao\": {\n            \"maxLength\": 200,\n            \"minLength\": 0,\n            \"type\": \"string\"\n          },\n          \"valor\": {\n            \"type\": \"number\",\n            \"format\": \"double\"\n          },\n          \"data\": {\n            \"type\": \"string\",\n            \"format\": \"date-time\"\n          },\n          \"usuarioId\": {\n            \"maximum\": 2147483647,\n            \"minimum\": 1,\n            \"type\": \"integer\",\n            \"format\": \"int32\"\n          }\n        },\n        \"additionalProperties\": false\n      },\n      \"TransacaoResponse\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"id\": {\n            \"type\": \"integer\",\n            \"format\": \"int32\"\n          },\n          \"descricao\": {\n            \"type\": \"string\",\n            \"nullable\": true\n          },\n          \"valor\": {\n            \"type\": \"number\",\n            \"format\": \"double\"\n          },\n          \"data\": {\n            \"type\": \"string\",\n            \"format\": \"date-time\"\n          },\n          \"usuarioId\": {\n            \"type\": \"integer\",\n            \"format\": \"int32\"\n          },\n          \"usuario\": {\n            \"$ref\": \"#/components/schemas/UsuarioResponse\"\n          }\n        },\n        \"additionalProperties\": false\n      },\n      \"TransacaoResponsePagedResult\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"page\": {\n            \"type\": \"integer\",\n            \"format\": \"int32\"\n          },\n          \"pageSize\": {\n            \"type\": \"integer\",\n            \"format\": \"int32\"\n          },\n          \"totalItems\": {\n            \"type\": \"integer\",\n            \"format\": \"int32\"\n          },\n          \"totalPages\": {\n            \"type\": \"integer\",\n            \"format\": \"int32\"\n          },\n          \"items\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"$ref\": \"#/components/schemas/TransacaoResponse\"\n            },\n            \"nullable\": true\n          },\n          \"hasPrevious\": {\n            \"type\": \"boolean\",\n            \"readOnly\": true\n          },\n          \"hasNext\": {\n            \"type\": \"boolean\",\n            \"readOnly\": true\n          }\n        },\n        \"additionalProperties\": false\n      },\n      \"UsuarioRequest\": {\n        \"required\": [\n          \"email\",\n          \"nome\"\n        ],\n        \"type\": \"object\",\n        \"properties\": {\n          \"nome\": {\n            \"maxLength\": 100,\n            \"minLength\": 0,\n            \"type\": \"string\"\n          },\n          \"email\": {\n            \"maxLength\": 150,\n            \"minLength\": 0,\n            \"type\": \"string\",\n            \"format\": \"email\"\n          }\n        },\n        \"additionalProperties\": false\n      },\n      \"UsuarioResponse\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"id\": {\n            \"type\": \"integer\",\n            \"format\": \"int32\"\n          },\n          \"nome\": {\n            \"type\": \"string\",\n            \"nullable\": true\n          },\n          \"email\": {\n            \"type\": \"string\",\n            \"nullable\": true\n          }\n        },\n        \"additionalProperties\": false\n      }\n    }\n  }\n}"
+}

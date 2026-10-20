@@ -16,9 +16,8 @@ public class TransacaoRequest : IValidatableObject
     public IEnumerable<ValidationResult> Validate(ValidationContext context)
     {
         if (Data == default) yield return new("Informe uma data válida.", [nameof(Data)]);
-        if (Valor < -9999999999999999.99m || Valor > 9999999999999999.99m || decimal.Round(Valor, 2) != Valor)
+        if (!DimDim.Domain.MoneyRules.IsValid(Valor))
             yield return new("Valor deve caber em decimal(18,2), com até duas casas decimais.", [nameof(Valor)]);
     }
 }
 public record TransacaoResponse(int Id, string Descricao, decimal Valor, DateTime Data, int UsuarioId, UsuarioResponse Usuario);
-

@@ -1,0 +1,25 @@
+{
+    "name":  "01-usuario-demo",
+    "executedAtUtc":  "2026-10-20T19:28:09.8156403Z",
+    "method":  "POST",
+    "url":  "https://dimdim-api-561439-nb261001.azurewebsites.net/api/usuarios",
+    "requestHeaders":  {
+
+                       },
+    "status":  201,
+    "headers":  {
+                    "Date":  "Tue, 20 Oct 2026 19:28:04 GMT",
+                    "Location":  "https://dimdim-api-561439-nb261001.azurewebsites.net/api/usuarios/2",
+                    "Set-Cookie":  "ARRAffinity=b2fccf9116282c9672b2b47d85ae1e40a0982f2853d98adce6127a0953fdfb84;Path=/;HttpOnly;Secure;Domain=dimdim-api-561439-nb261001.azurewebsites.net, ARRAffinitySameSite=b2fccf9116282c9672b2b47d85ae1e40a0982f2853d98adce6127a0953fdfb84;Path=/;HttpOnly;SameSite=None;Secure;Domain=dimdim-api-561439-nb261001.azurewebsites.net",
+                    "Server":  "Kestrel",
+                    "Transfer-Encoding":  "chunked",
+                    "Request-Context":  "appId=cid-v1:34294f73-c161-45bb-85d0-ab114555cf4e",
+                    "Content-Type":  "application/json; charset=utf-8"
+                },
+    "body":  {
+                 "id":  2,
+                 "nome":  "Demo CP5",
+                 "email":  "cp5-c99c45cca48e46328426d5041e92d196@example.com"
+             },
+    "rawBody":  "{\"id\":2,\"nome\":\"Demo CP5\",\"email\":\"cp5-c99c45cca48e46328426d5041e92d196@example.com\"}"
+}

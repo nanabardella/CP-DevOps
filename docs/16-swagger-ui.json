@@ -1,0 +1,19 @@
+{
+    "name":  "16-swagger-ui",
+    "executedAtUtc":  "2026-10-20T19:28:28.0166015Z",
+    "method":  "GET",
+    "url":  "https://dimdim-api-561439-nb261001.azurewebsites.net/swagger/index.html",
+    "requestHeaders":  {
+
+                       },
+    "status":  200,
+    "headers":  {
+                    "Transfer-Encoding":  "chunked",
+                    "Request-Context":  "appId=cid-v1:34294f73-c161-45bb-85d0-ab114555cf4e",
+                    "Date":  "Tue, 20 Oct 2026 19:28:23 GMT",
+                    "Server":  "Kestrel",
+                    "Content-Type":  "text/html; charset=utf-8"
+                },
+    "body":  "\u003c!-- HTML for static distribution bundle build --\u003e\n\u003c!DOCTYPE html\u003e\n\u003chtml lang=\"en\"\u003e\n\u003chead\u003e\n    \u003cmeta charset=\"UTF-8\"\u003e\n    \u003ctitle\u003eSwagger UI\u003c/title\u003e\n    \u003clink rel=\"stylesheet\" type=\"text/css\" href=\"./swagger-ui.css\"\u003e\n    \u003clink rel=\"stylesheet\" type=\"text/css\" href=\"./index.css\"\u003e\n    \u003clink rel=\"icon\" type=\"image/png\" href=\"./favicon-32x32.png\" sizes=\"32x32\" /\u003e\n    \u003clink rel=\"icon\" type=\"image/png\" href=\"./favicon-16x16.png\" sizes=\"16x16\" /\u003e\n       \n\u003c/head\u003e\n\n\u003cbody\u003e\n    \u003cdiv id=\"swagger-ui\"\u003e\u003c/div\u003e\n\n    \u003cscript src=\"./swagger-ui-bundle.js\" charset=\"utf-8\"\u003e\u003c/script\u003e\n    \u003cscript src=\"./swagger-ui-standalone-preset.js\" charset=\"utf-8\"\u003e\u003c/script\u003e\n    \u003cscript src=\"index.js\" charset=\"utf-8\"\u003e\u003c/script\u003e\n\u003c/body\u003e\n\u003c/html\u003e\n",
+    "rawBody":  "\u003c!-- HTML for static distribution bundle build --\u003e\n\u003c!DOCTYPE html\u003e\n\u003chtml lang=\"en\"\u003e\n\u003chead\u003e\n    \u003cmeta charset=\"UTF-8\"\u003e\n    \u003ctitle\u003eSwagger UI\u003c/title\u003e\n    \u003clink rel=\"stylesheet\" type=\"text/css\" href=\"./swagger-ui.css\"\u003e\n    \u003clink rel=\"stylesheet\" type=\"text/css\" href=\"./index.css\"\u003e\n    \u003clink rel=\"icon\" type=\"image/png\" href=\"./favicon-32x32.png\" sizes=\"32x32\" /\u003e\n    \u003clink rel=\"icon\" type=\"image/png\" href=\"./favicon-16x16.png\" sizes=\"16x16\" /\u003e\n       \n\u003c/head\u003e\n\n\u003cbody\u003e\n    \u003cdiv id=\"swagger-ui\"\u003e\u003c/div\u003e\n\n    \u003cscript src=\"./swagger-ui-bundle.js\" charset=\"utf-8\"\u003e\u003c/script\u003e\n    \u003cscript src=\"./swagger-ui-standalone-preset.js\" charset=\"utf-8\"\u003e\u003c/script\u003e\n    \u003cscript src=\"index.js\" charset=\"utf-8\"\u003e\u003c/script\u003e\n\u003c/body\u003e\n\u003c/html\u003e\n"
+}
