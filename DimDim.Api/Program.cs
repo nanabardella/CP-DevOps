@@ -33,6 +33,7 @@ var insights = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"] ??
 if (!string.IsNullOrWhiteSpace(insights)) builder.Services.AddApplicationInsightsTelemetry(options => options.ConnectionString = insights);
 var app = builder.Build(); app.UseExceptionHandler(); app.UseRouting(); app.UseRateLimiter();
 if (app.Environment.IsDevelopment() || builder.Configuration.GetValue<bool>("Swagger:Enabled")) {
+    app.MapGet("/", () => Results.Redirect("/swagger")).ExcludeFromDescription();
     app.UseSwagger(); app.UseSwaggerUI(options => {
         foreach (var version in app.Services.GetRequiredService<IApiVersionDescriptionProvider>().ApiVersionDescriptions)
             options.SwaggerEndpoint($"/swagger/{version.GroupName}/swagger.json", version.GroupName + (version.IsDeprecated ? " (DEPRECADA)" : ""));
